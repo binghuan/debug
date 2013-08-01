@@ -15,22 +15,28 @@
 				border:1px solid rgb(60%,60%,60%);
 			}
 		</style>
+		<title>DirectPass Support Tool</title>
 	</head>
 	<body>
-		<div class='centered'>
-			<div>
-				<button id='button_logon' type="button" class="btn btn-success">Start Logger</button>
-				<button id='button_logoff' type="button" class="btn btn-danger">Stop Logger</button>
-				<blockquote>
-					<p>After Starting logger, please quit and restart browser</p><br>
-					<p>after having a test case, please launch /Application/DirectPass/collectLog.app to collect log.</p>
-				</blockquote>
+			<div style='margin-left:20pt'>
+				<h3>Collect Debugging Information</h3>
+				<ol>
+					<li>
+						Click <button id='button_logon' type="button" class="btn btn-success">[1. Start Collecting Data]</button>		 and then reporoduce the problem to generate the needed information.
+					</li>
+					<li style='margin-top:10pt'>
+						Click <button id='button_logoff' type="button" class="btn btn-danger">[2. Finish Collecting Data]</button> to write debug information to a log file.
+					</li>
+					<li style='margin-top:10pt'>
+						Launch <a id='open_tool' href='smb:///Applications/DirectPass/collectlog.app' target='_self'>/Applications/DriectPass/collectlog.app</a> to get the log file.
+					</li>
+				</ol>
 			</div>
-		</div>
 
 		<script>
 
 			$('document').ready(function() {
+
 				// sub action list is for setup build sage.
 				var ACTION_OF_TEST = {				
 					REQUEST_SET_LOG_LEVEL:		33575031,
