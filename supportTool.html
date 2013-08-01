@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/bootstrap.min.css"  media="screen">
+		<script src="jquery-1.10.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<style>
+			.centered {
+			  	position: fixed;
+			  	top: 50%;
+			  	left: 50%;
+			  	margin-top: -50px;
+			  	margin-left: -100px;
+				border:1px solid rgb(60%,60%,60%);
+			}
+		</style>
+	</head>
+	<body>
+		<div class='centered'>
+			<button id='button_logon' type="button" class="btn btn-success">Start Logger</button>
+			<button id='button_logoff' type="button" class="btn btn-danger">Stop Logger</button>
+		</div>
+
+		<script>
+
+			$('document').ready(function() {
+				// sub action list is for setup build sage.
+				var ACTION_OF_TEST = {				
+					REQUEST_SET_LOG_LEVEL:		33575031,
+
+					REQUEST_SET_LOG2FILE_ONOFF:	33575035,
+					RESULT_SET_LOG2FILE_ONOFF:	33575036,
+					REQUEST_GET_LOG2FILE_ONOFF:	33575037,
+					RESULT_GET_LOG2FILE_ONOFF:	33575038
+				};
+
+				$('#button_logon').click(function() {
+					console.log("button_log2file_on");
+
+					var sentObj = {actionType: ACTION_OF_TEST.REQUEST_SET_LOG_LEVEL,
+							LogLevel: "Xchkpt"};
+					window.top.postMessage( sentObj, "*");
+					console.log("sent Request:", sentObj);
+
+					sentObj = {actionType: ACTION_OF_TEST.REQUEST_SET_LOG2FILE_ONOFF,
+							setLog2FileEnabled: true};
+					window.top.postMessage( sentObj, "*");
+					console.log("sent Request:", sentObj);					
+				});
+
+				$('#button_logoff').click(function() {
+					console.log("button_log2file_on");
+
+					var sentObj = {actionType: ACTION_OF_TEST.REQUEST_SET_LOG_LEVEL,
+							LogLevel: "Xcept"};
+					window.top.postMessage( sentObj, "*");
+					console.log("sent Request:", sentObj);
+
+					sentObj = {actionType: ACTION_OF_TEST.REQUEST_SET_LOG2FILE_ONOFF,
+							setLog2FileEnabled: false};
+					window.top.postMessage( sentObj, "*");
+					console.log("sent Request:", sentObj);	
+				});				
+			});
+
+
+		</script>
+	</body>
+</html>

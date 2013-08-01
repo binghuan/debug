@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/bootstrap.min.css"  media="screen">
+		<script src="jquery-1.10.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src='trendDebug.js'></script>
+	</head>
+	<body>
+		<!-- AdBlogger -->
+		
+		<div style='padding-left:20pt'>
+		<table border="1">
+			<tr>
+				<td>
+					<p>Current Stage is: <span id="stage_value"></span></p>
+					<button id='button_getStage' class='btn btn-primary'>Get Current Stage value</button><br><br>
+					<p> Choose one of following stage for your extension.</p>
+					<div class="btn-group">
+						<button id='button_dev_test' class='btn'>dev-testing</button>
+						<button id='button_dev' class='btn'>dev</button>
+						<button id='button_beta' class='btn'>beta</button>
+						<button id='button_ebeta' class='btn'>ebeta</button>
+					</div>
+				</td>
+				<td>
+					<br><br>
+					<p>Current WTP Host Address is: <span id="wtp_host_url"></span></p>
+					<button id='button_getWtpUrl' class='btn btn-primary'>Get Current WTP Host Address</button><br>
+					<input id='wtpUrl' type='text' size='100px'><button id='button_wtpUrl' value='setup wtp host Address' class='btn'>SET WTP HOST ADDRESS</button>
+					<br><p>(Please input an server address without protocol prefix, ex: dp20-tw.url.trendmicro.com)</p>
+					<br>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id='error_notify_setting'>
+						<p>Current ShowErrorNotificationEnabled is: <span id="errorNotifyEnabled"></span></p>
+						<button id='button_isErrorNotifyEnabled' class='btn btn-primary'>Get Current Setting of ErrorNotifyEnabled</button><br>
+						<br><p>Use following button to turn on/off Error Notification</p>
+						<div class='btn-group'>
+							<button id='button_enabled'>turn ON</button>
+							<button id='button_disabled'>turn OFF</button>
+						</div>
+						<p id='msg_debug'> If your mac os x version is not equal or greater than 10.8, please turn off the function.</p><br>
+					</div id='error_notify_setting'>
+				</td>
+				<td>
+					<button id='button_generateLog' class='btn btn-primary'>Generate Log</button><br>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>Current Log Level is: <span id="logLevel_value"></span></p>
+					<button id='button_getLogLevel' class='btn btn-primary'>Get Current Log Level</button><br><br>
+					<p> Choose one of following log level for your extension.</p>
+					<div class="btn-group">
+						<button id='button_note' class='btn'>Xnote</button>
+						<button id='button_checkpoint' class='btn'>Xchkpt</button>
+						<button id='button_exception' class='btn'>Xcept</button>
+					</div>
+				</td>
+				<td>
+					<p>is log2file enabled: <span id="log2file_value"></span></p>
+					<button id='button_getLog2File' class='btn btn-primary'>Get Current function state of log2file</button><br><br>
+					<p>Use following button to turn on/off log2file</p>
+					<div class="btn-group">
+						<button id='button_log2file_on'>turn ON</button>
+						<button id='button_log2file_off'>turn OFF</button>
+					</div>
+				</td>
+			</tr>
+		</table>
+		</div>
+		
+	</body>
+</html>
