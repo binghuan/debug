@@ -73,8 +73,14 @@
 							setLog2FileEnabled: false};
 					window.top.postMessage( sentObj, "*");
 					console.log("sent Request:", sentObj);	
+
+					setTimeout(launchAppToGetLogFiles, 2000);
 				});				
 			});
+
+			function launchAppToGetLogFiles() {
+				window.open("dpdbg://.", '_blank');
+			}
 
 
 		</script>
