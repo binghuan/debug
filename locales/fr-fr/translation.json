@@ -1,0 +1,9 @@
+{
+	"title": "Collect Debugging Information",
+	"label_click": "Click",
+	"button_start": "Start Collecting Data",
+	"button_finish": "Finish Collecting Data",
+	"text_step1": " and then reporoduce the problem.",
+	"text_step2": " to generate needed information.",
+	"text_getlog": "You can get the log file from the newly open Finder Window."
+}

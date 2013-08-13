@@ -1,0 +1,9 @@
+{
+	"title": "擷取除錯資料",
+	"label_click": "按下",
+	"button_start": "開始擷取除錯資料",
+	"button_finish": "結束擷取除錯資料",
+	"text_step1": " 然後試著再重做一次動作，讓問題再發生",
+	"text_step2": " 以產生須要的資料",
+	"text_getlog": "您可以在新開啟的資料夾視窗中取得除錯資訊。"
+}
