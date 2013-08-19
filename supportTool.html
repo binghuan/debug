@@ -124,6 +124,7 @@
 					console.log("sent Request:", sentObj);	
 				});
 
+				var isUIReady = false;
 
 				window.addEventListener("message", function(event) {
 					var action = event.data.actionType;
@@ -137,7 +138,12 @@
 							} else {
 								$("#button_logon").attr("class","btn btn-primary");
 								$("#button_logoff").attr("class","btn");
-								launchAppToGetLogFiles();
+								if(isUIReady === true) {
+									launchAppToGetLogFiles();	
+								} else {
+									isUIReady = true;
+								}
+								
 							}
 							//document.getElementById('log2file_value').innerHTML = event.data.isLog2FileEnabled;
 							break;				
