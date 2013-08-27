@@ -5,5 +5,14 @@
     "button_finish": "Finish Collecting Data",
     "text_step1": " and then reproduce the problem.",
     "text_step2": " to save the debugging information.",
-    "text_getlog": "Get the log file in the Finder window that opens."
+    "text_getlog": "Open the DirectPass Diagnostic Toolkit to send the files to Trend Micro.",
+    "title_how_to_do": "How to Open the Toolkit",
+    "description_how_to_do": "You can find the toolkit at the following location:",
+	"path_of_tool": "/Library/Application Support/DirectPass/Utilities",
+    "description_how_to_open": "To open the location:",
+    "text_how_to_1": "Open Finder",
+    "text_how_to_2": "In the menu bar, click Go and then select Go to Folder.",
+    "text_how_to_3": "Type the folder location shown above and then click Go.",
+    "text_how_to_4": "In the window that opens, double click DirectPass Diagnostic Toolkit.",
+    "text_how_to_5": "Wait for the toolkit to finish collecting the logs, and then click Quit."
 }
