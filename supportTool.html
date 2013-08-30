@@ -153,9 +153,10 @@
 					var action = event.data.actionType;
 					switch(action) {
 						case ACTION_OF_TEST.RESULT_GET_LOG2FILE_ONOFF:
-							console.log("Receive RESULT_GET_LOG2FILE_ONOFF:");
+							console.log("Receive RESULT_GET_LOG2FILE_ONOFF");
 							console.log(event.data);
 							if(event.data.isLog2FileEnabled === true) {
+								 console.log('isLog2FileEnabled > ' + event.data.isLog2FileEnabled);
 								$("#button_logon").attr("class","btn");
 								$("#button_logoff").attr("class","btn btn-primary");
 							} else {
