@@ -107,11 +107,30 @@
 				//getCurrentLogLevel();
 				checkIsLog2FileEnabled();
 
+				var locale = navigator.language.toLowerCase();
+				console.log('get locale: ' + locale);
+				if(locale.indexOf("ja") != -1) {
+					locale = "ja-jp";
+				} else if(locale.indexOf("de") != -1) {
+					locale = "de-de";
+				} else if(locale.indexOf("en") != -1) {
+					locale = "en-us";
+				} else if(locale.indexOf("zh-tw") != -1) {
+					locale = "zh-tw";
+				} else if(locale.indexOf("fr") != -1) {
+					locale = "fr-fr";
+				} else {
+					locale = "en-us";
+				}
+
+				l10nFilePath = "locales/" + locale + "/translation.json";
+				console.log('load resource: ' + l10nFilePath);
+
 				i18n.init({	debug: true, 
 			  				fallbackLng: false,
 							debug: true,
 			  				ns: 'translation',
-			  				resGetPath: './locales/__lng__/__ns__.json',
+			  				resGetPath: l10nFilePath,
 			  				load: 'current',
 			  				getAsync: false,
 			  				lowerCaseLng: true
