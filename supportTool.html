@@ -23,11 +23,7 @@
 				<h3 data-i18n='title'>Collect Debugging Information</h3>
 				<ol style='margin-top:10pt'>
 					<li>
-						<p><span id='prefix_label1' data-i18n='label_click'>Click </span>
-							<button id='button_logon' type="button" class="btn btn-success" data-i18n='button_start'>Start Collecting Data</button>
-							<span id='postfix_label1' data-i18n='label_click'>Click </span>
-							<span data-i18n='text_step1'> and then reporoduce the problem.</span>
-						</p>
+						<p><span id='prefix_label1' data-i18n='label_click'>Click </span><button id='button_logon' type="button" class="btn btn-success" data-i18n='button_start'>Start Collecting Data</button><span id='postfix_label1' data-i18n='label_click'>Click </span><span data-i18n='text_step1'> and then reporoduce the problem.</span></p>
 					</li>
 					<li >
 						<p><span id='prefix_label2' data-i18n='label_click'>Click </span><button id='button_logoff' type="button" class="btn btn-danger" data-i18n='button_finish'>Finish Collecting Data</button><span id='postfix_label2' data-i18n='label_click'>Click </span><span data-i18n='text_step2'> to generate needed information.
@@ -198,7 +194,6 @@
 							console.log("Receive RESULT_GET_LOG2FILE_ONOFF");
 							console.log(event.data);
 							if(event.data.isLog2FileEnabled === true) {
-								 console.log('isLog2FileEnabled > ' + event.data.isLog2FileEnabled);
 								$("#button_logon").attr("class","btn");
 								$("#button_logoff").attr("class","btn btn-primary");
 							} else {
