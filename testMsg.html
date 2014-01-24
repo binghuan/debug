@@ -6,36 +6,51 @@
 		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 		<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/json3.js"></script>
 	</head>
 
 	<body>
-			<h3>Please postMessage to me</h3><br>
-			<p id='textBoard'>First Line.</p><br>
-			<input id='targetUrl' type='text' size='100px'><button id='loadUrl' class='btn btn-primary' value='load url'>Load URL</button><br>
-			<iframe id='pageFrame' width='800pt' height='600pt'></iframe>
-			<script>
+		<h3>Please postMessage to me</h3><br>
+		<p id='textBoard'>First Line.</p><br>
+		<input id='targetUrl' type='text' size='100px'><button id='loadUrl' class='btn btn-primary' value='load url'>Load URL</button><br>
+		<iframe id='pageFrame' width='800pt' height='600pt'></iframe>
+		<script>
 
-				var myframe = document.getElementById('pageFrame');
-				var text = document.getElementById('textBoard');
-				var urlAddress = document.getElementById('targetUrl');
-				$("#loadUrl").click(function() {
-					console.log("ready to load url: " + urlAddress.value);
-					myframe.src = urlAddress.value;
+			var myframe = document.getElementById('pageFrame');
+			var text = document.getElementById('textBoard');
+			var urlAddress = document.getElementById('targetUrl');
+			$("#loadUrl").click(function() {
+				console.log("ready to load url: " + urlAddress.value);
+				myframe.src = urlAddress.value;
+			});
+
+			function messageReceiver(event) {
+				console.log("getMessage: ");
+				console.log(event);
+				console.log("typeof event.data: " + (typeof event.data))
+				if((typeof event.data) === "string") {
+					console.log("typeof event.data: " + event.data)
+					text.innerHTML = text.innerHTML + "<br>" + (new Date()) + (event.data);
+				} else {
+					console.log("typeof event.data: " + event.data)
+					text.innerHTML = text.innerHTML + "<br>" + (new Date()) + JSON.stringify(event.data);
+				}
+			}
+
+			$('document').ready(function() {
+				if(window.addEventListener) {
+					window.addEventListener("message", messageReceiver);
+				} else {
+					window.attachEvent("onmessage", messageReceiver);
+				}
+
+				$("#targetUrl").keyup(function(event){
+			    	if(event.keyCode == 13){
+			        	myframe.src = urlAddress.value;
+			    	}
 				});
-				$('document').ready(function() {
-					window.addEventListener("message", function(event) {	
-						console.log("getMessage: ");
-						console.log(event);
-						text.innerHTML = text.innerHTML + "<br>" + (new Date()) + JSON.stringify(event.data);
-					});
+			});
 
-					$("#targetUrl").keyup(function(event){
-				    	if(event.keyCode == 13){
-				        	myframe.src = urlAddress.value;
-				    	}
-					});
-				});
-
-			</script>
+		</script>
 	</body>
 </html>
