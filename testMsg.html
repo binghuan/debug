@@ -16,6 +16,12 @@
 		<iframe id='pageFrame' width='800pt' height='600pt'></iframe>
 		<script>
 
+			if(console && console.log) {
+ 				// ...
+			} else {
+				var console = {log: function() {]}};
+			}
+
 			var myframe = document.getElementById('pageFrame');
 			var text = document.getElementById('textBoard');
 			var urlAddress = document.getElementById('targetUrl');
