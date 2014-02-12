@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<!--<script src="utils.js"></script>-->
+		<script src="json3.js"></script>
+		<script src="jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="testPostMsgIframe.js"></script>
+	</head>
+	<body>
+		<h3>I am iframe's content</h3>
+		<div id="test">Send me a message!</div>
+		<script>
+			function listener(event){  
+				var dataType = (typeof event.data);
+				document.getElementById("test").innerHTML = (new Date()) + " __ received: type is " + typeof event.data;
+				document.getElementById("test").innerHTML += "<br>" + JSON.stringify(event.data)
+				console.log("received: "+ (typeof event.data) );
+				console.log(event.data );
+				if(dataType === "string") {
+
+					var eventData = JSON.parse(event.data);
+					document.getElementById("test").innerHTML += "<br> afterParse and stringify to new obj:<br>"  + JSON.stringify(eventData);
+
+					event.data = JSON.parse(event.data);
+					document.getElementById("test").innerHTML += "<br> afterParse and stringify to original obj:<br>"  + JSON.stringify(event.data);
+				}
+
+			}
+
+			if (window.addEventListener){  
+				addEventListener("message", listener, false)  
+			} else {  
+				attachEvent("onmessage", listener)  
+			}  
+		</script>
+	</body>
+</html>
