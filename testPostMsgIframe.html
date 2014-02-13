@@ -35,10 +35,11 @@
 			}  
 
 			$("document").ready(function() {
+				console.log("I am ready");
 				var msgObj = {"actionType": 10003};
 				window.top.postMessage(JSON.stringify(msgObj), "*");
 			});
-			
+
 		</script>
 	</body>
 </html>
