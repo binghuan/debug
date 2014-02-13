@@ -33,6 +33,12 @@
 			} else {  
 				attachEvent("onmessage", listener)  
 			}  
+
+			$("document").ready(function() {
+				var msgObj = {"actionType": 10003};
+				window.top.postMessage(JSON.stringify(msgObj), "*");
+			});
+			
 		</script>
 	</body>
 </html>
