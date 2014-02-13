@@ -32,11 +32,11 @@ function iframeEventHandler(event) {
 	iframeDocument.getElementsByTagName('head')[0].appendChild(scripWidthSrc);
 }
 
-function addEvent(eventName, element, fun) {
-	if(element.addEventListener) {
-		element.addEventListener(eventName, fun, false);
+function addEvent(eventName, elementWindow, fun) {
+	if(elementWindow.addEventListener) {
+		elementWindow.addEventListener(eventName, fun, false);
 	} else {
-		element.attachEvent("on" + eventName, fun);
+		elementWindow.attachEvent("on" + eventName, fun);
 	}
 }
 
@@ -56,6 +56,8 @@ $("document").ready(function() {
 	});
 	document.body.appendChild(iframe);
 	*/
+
+	addEvent("message", window, eventReceiver);
 
 	$("#postMessage").click(function() {
 		console.log("ready to post message");
