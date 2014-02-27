@@ -17,7 +17,7 @@ var responser8975b6c6 = (function(){
 		if(isOnTop() === true) {
 			if(document.getElementById("extensionFrame") == undefined) {
 				var styleDesc= "font-family: Arial, Tahoma; background-color: white; width:auto; position: fixed;" +
-				"z-index: 2147483647; top: 10%; left:30%;height:120pt;";
+				"z-index: 2147483647; top: 80pt; left:10pt;height:140pt;";
 				var template = "<iframe style='" + styleDesc + "' id='extensionFrame' scrolling='no' src='testExtFrameServer.html'></iframe>";
 
 				$('body').append(template);	
