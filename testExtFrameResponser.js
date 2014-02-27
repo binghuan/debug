@@ -1,7 +1,7 @@
 var responser8975b6c6 = (function(){
 
 	console.log(tag, "OoO running Responder.js ---> start");
-	var tag="[[Responder]]>";
+	var tag="[[Responser]]>";
 
 	var isOnTop = function(){
 

@@ -1,6 +1,6 @@
 console.log("OoO running testExtFrameM.js ---> start");
 
-var tag = "[[controller]]";
+var tag = "[[main frame]]";
 function action1() {
 	console.log(tag, "--> running action1");
 }

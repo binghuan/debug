@@ -1,5 +1,5 @@
 
-var tag= "[[frame C]]>";
+var tag= "frame [C]>";
 
 console.log(tag, "### running framc C");
 
