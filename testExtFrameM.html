@@ -18,13 +18,14 @@
 	<body style="padding:20px;">
 		<div class="row">
 			<div class="col-md-2"><h3>Controller</h3><br>
-				
+				<button type="button" class="btn btn-primary" onclick="testDelayExtFrameLoad()">delay [extension frame] loading
+				<button type="button" class="btn btn-primary" onclick="reloadThisPage()">Reload Page in Normal</button>
 		  	</div>
 		  <div class="col-md-5"><h3>[:single iframe]</h3><br>
-		  	<iframe src="http://studiobinghuan.blogspot.com" border="1pt" width="100%" height="320pt"></iframe>
+		  	<iframe id="frameA" src="http://studiobinghuan.blogspot.com" border="1pt" width="100%" height="320pt"></iframe>
 		  </div>
 		  <div class="col-md-5"><h3>[:iframe wihtin iframe]</h3><br>
-		  	<iframe src="testExtFrameB.html" border="1pt" width="100%" height="320pt"></iframe>
+		  	<iframe id="frameB" src="testExtFrameB.html" border="1pt" width="100%" height="320pt"></iframe>
 		  </div>
 		</div>
 	</body>

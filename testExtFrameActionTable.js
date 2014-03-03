@@ -1,0 +1,3 @@
+var actionTable = {
+	hello: "hello"
+};

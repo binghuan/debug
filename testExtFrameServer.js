@@ -1,9 +1,7 @@
 
 var tag= "[[extension frame]]>";
 
-console.log(tag, "### running extension frame ");
-
-
+console.log(getTime(), tag,"### running extension frame ");
 
 var windowMap = (function(){
 
@@ -23,11 +21,8 @@ var windowMap = (function(){
 			}
 
 			if(hit === false) {
-				console.log(tag, "!! incoming new windows obj");
-				windowTable.push(newWinObj);
-
-				
-				
+				console.log(getTime(), tag,"!! incoming new windows obj");
+				windowTable.push(newWinObj);		
 			}
 		},
 		getWindowTable: function() {
@@ -37,9 +32,15 @@ var windowMap = (function(){
 })();
 
 function messageHandler(event) {
-	console.log(tag, "Oh shit! I got message.", event);
+	console.log(getTime(), tag,"Oh shit! I got message.", event);
 	windowMap.addWindowInTable({source: event.source, origin: event.origin});
-	event.source.postMessage("action:helloIAmExtensionFrame", event.origin);
+	var msgObj = {
+		action: "hello", 
+		location: location.href,
+		id: "extFrame"
+	};
+
+	windowPostMessage(event.source, msgObj, event.origin);
 
 }
 

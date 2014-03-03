@@ -1,16 +1,19 @@
 
 var tag= "frame [C]>";
 
-console.log(tag, "### running framc C");
+console.log(getTime(), tag,"### running framc C");
 
 function messageHandler(event) {
-	console.log(tag, "Oh shit! I got message too.", event);
+	console.log(getTime(), tag,"Oh shit! I got message too.", event);
 }
 
 function loadEventHandler() {
-	console.log(tag, "I will say hello to extension frame");
-	//window.top.postMessage("action:hello", "*");
-	window.top.document.getElementById("extensionFrame").contentWindow.postMessage("action:helloIAmFrameC", "*");
+	console.log(getTime(), tag,"event - load");
+
+}
+
+function checkVariable() {
+	alert(ready);
 }
 
 if(window.addEventListener) {
@@ -22,5 +25,5 @@ if(window.addEventListener) {
 }
 
 function sayHelloToExtFrame() {
-	window.top.document.getElementById("extensionFrame").contentWindow.postMessage("action:helloIAmFrameC", "*");
+	windowPostMessage(window.top.document.getElementById("extensionFrame").contentWindow, "action:helloIAmFrameC", "*");
 }

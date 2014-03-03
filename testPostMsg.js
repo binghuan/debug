@@ -63,14 +63,14 @@ $("document").ready(function() {
 		console.log("ready to post message");
 		var obj = {"actionType": 10001, "data": "test"};
 
-		document.getElementById("iframe").contentWindow.postMessage( JSON.stringify(obj), "*");
+		windowPostMessage(document.getElementById("iframe").contentWindow, JSON.stringify(obj), "*");
 		console.log("--> done");
 	});
 
 	$("#postMessageJson").click(function() {
 		console.log("ready to post message");
 		var obj = {actionType: 10001, data: "test"};
-		document.getElementById("iframe").contentWindow.postMessage( obj, "*");
+		windowPostMessage(document.getElementById("iframe").contentWindow, obj, "*");
 		console.log("--> done");
 	});
 
