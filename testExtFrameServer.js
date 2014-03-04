@@ -32,20 +32,32 @@ var windowMap = (function(){
 })();
 
 function messageHandler(event) {
-	console.log(getTime(), tag,"Oh shit! I got message.", event);
-	windowMap.addWindowInTable({source: event.source, origin: event.origin});
+	console.log(getTime(), tag,"OhMyGod! I got message.", event);
+	if(event.data.action === "helloExtensionFrame") {
+			var source = event.data.source;
+			var origin = event.data.origin;
+			windowMap.addWindowInTable({source: source, origin: origin});	
+			var msgObj = {
+				action: "ALoHa", 
+				location: location.href
+			};
+			windowPostMessage(source, msgObj, origin);
+	}
+}
+
+$("document").ready(function() {
+
+	if(window.addEventListener) {
+		window.addEventListener("message", messageHandler);
+	} else {
+		window.attachEvent("onmessage", messageHandler);
+	}
+
 	var msgObj = {
-		action: "hello", 
-		location: location.href,
-		id: "extFrame"
-	};
+			action: "EXTENSION_FRAME_IS_READY", 
+			location: location.href
+		};
 
-	windowPostMessage(event.source, msgObj, event.origin);
-
-}
-
-if(window.addEventListener) {
-	window.addEventListener("message", messageHandler);
-} else {
-	window.attachEvent("onmessage", messageHandler);
-}
+	console.log(getTime(), tag, "***handshake*** broadcast EXTENSION_FRAME_IS_READY");
+	windowPostMessage(window.top, msgObj, "*");
+});

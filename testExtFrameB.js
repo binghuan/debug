@@ -1,6 +1,9 @@
 
 function sayHelloToExtFrame() {
-	window.top.document.getElementById("extensionFrame").contentWindow.postMessage("action:helloIAmFrameB", "*");
+	var msgObj = {
+		action: "hello"
+	};
+	windowPostMessage(window.top, msgObj, "*");
 }
 
 function checkVariable() {

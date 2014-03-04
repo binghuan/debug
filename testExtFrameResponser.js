@@ -19,25 +19,14 @@ var responser8975b6c6 = (function(){
 
 	var timerId;
 	function checkExtFrameReadyOrNot() {
+		console.log(getTime(), rTag,"***handShake*** I want to say hello to extension frame");
 
-		if(handShakeState.isExtFrameReady === true) {
-			
-			return;
-		}
+		var msgObj = {
+			action: "hello",
+			location: location.href
+		};
 
-		if(window.top.document.getElementById("extensionFrame")) {
-
-			console.log(getTime(), rTag,"***handShake*** I will say hello to extension frame");
-
-			var msgObj = {
-				action: "hello",
-				location: location.href
-			};
-
-			windowPostMessage(window.top.document.getElementById("extensionFrame").contentWindow, msgObj, "*");		
-		}
-
-		timerId = setTimeout(checkExtFrameReadyOrNot, handShakeState.askDelayTime);
+		windowPostMessage(window.top, msgObj, "*");		
 	}
 
 
@@ -69,15 +58,77 @@ var responser8975b6c6 = (function(){
 			checkExtFrameReadyOrNot();
 		}
 
+		var windowMap = (function(){
+
+			var windowTable = [];
+
+			return {
+
+				addWindowInTable: function(newWinObj) {
+
+					var i;
+					var hit = false;
+					for(i=0; i< windowTable.length; i++) {
+						if(windowTable[i].source === newWinObj.source) {
+							hit = true;
+							break;
+						}
+					}
+
+					if(hit === false) {
+						console.log(getTime(), tag,"!! incoming new windows obj");
+						windowTable.push(newWinObj);		
+					}
+				},
+				getWindowTable: function() {
+					return windowTable;
+				},
+				clear: function() {
+					windowTable = [];
+				}
+			};
+		})();
+
 		var messageHandler = function (event){
 			console.log(getTime(), rTag,"Oh shit! I got message: ", event);
-
 			var dataType = (typeof event.data);
 			if(dataType === "object") {
-				if(event.data.action === "hello" && event.data.id === "extFrame") {
+				if(event.data.action === "EXTENSION_FRAME_IS_READY") {
 					handShakeState.isExtFrameReady = true;
-					clearTimeout(timerId);
 					console.log(getTime(), rTag,"***handShake*** extension frame is ready -> check!");
+					var windowObjArray = windowMap.getWindowTable();
+					for(var i=0; i< windowObjArray.length; i++) {
+						var msgObj = {
+							action:"hello"
+						};
+						console.log(getTime(), rTag,"checkpoint 106");
+						windowObjArray[i].source.postMessage(msgObj, windowObjArray[i].origin);	
+						console.log(getTime(), rTag,"checkpoint 108");
+					}
+					
+					windowMap.clear();
+				} else if(event.data.action === "hello") {
+					if(self === top ) {
+						if(handShakeState.isExtFrameReady === true) {
+							var msgObj = {
+								action:"NOTIFY_EXTENSION_READY",
+								msg: "extension frame is ready la ~"
+							};
+							console.log(getTime(), rTag,"send back to notify extension ready");
+							event.source.postMessage(msgObj, event.origin);
+						} else {
+							var winObj = {
+								source: event.source,
+								origin: event.origin
+							};
+							windowMap.addWindowInTable(winObj);
+							console.log(getTime(), rTag,"pending asking ready or not");
+						}
+					} else {
+						console.log(getTime(), rTag,"ya, I got it. ext ready");
+					}
+				} else if(event.data.action === "NOTIFY_EXTENSION_READY") {
+					console.log(getTime(), rTag,"Oh ya, extension is ready ! I got you");
 				}
 			}
 		};
@@ -88,6 +139,8 @@ var responser8975b6c6 = (function(){
 					action: "hello", 
 					location: location.href
 				};
+
+				console.log(getTime(), rTag,"I will say hello");
 				windowPostMessage(window.top, msgObj, "*");
 			}
 		};
@@ -96,10 +149,17 @@ var responser8975b6c6 = (function(){
 			console.log(getTime(), rTag,"--> listner message");
 			console.log(getTime(), rTag,"--> listner loadevent");
 			window.addEventListener("message", messageHandler);
-			window.addEventListener("load", readyStateHandShaker.hello);
+			if(self != top) {
+				$("document").ready(readyStateHandShaker.hello);
+				//window.addEventListener("load", );	
+			}
+			
 		} else {
 			window.attachEvent("onmessage", messageHandler);
-			window.attachEvent("onload", readyStateHandShaker.hello);
+			if(self != top) {
+				window.attachEvent("onload", readyStateHandShaker.hello);
+			}
+			
 		}
 
 	});

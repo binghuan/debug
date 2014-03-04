@@ -16,14 +16,10 @@ function checkVariable() {
 	alert(ready);
 }
 
-if(window.addEventListener) {
-	window.addEventListener("message", messageHandler);
-	window.addEventListener("load", loadEventHandler);
-} else {
-	window.attachEvent("onmessage", messageHandler);
-	window.attachEvent("onload", loadEventHandler);
-}
-
 function sayHelloToExtFrame() {
-	windowPostMessage(window.top.document.getElementById("extensionFrame").contentWindow, "action:helloIAmFrameC", "*");
+	var msgObj = {
+		action: "hello",
+		location: location.href
+	};
+	windowPostMessage(window.top, msgObj, "*");
 }
