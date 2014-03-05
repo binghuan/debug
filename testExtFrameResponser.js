@@ -129,6 +129,14 @@ var responser8975b6c6 = (function(){
 					}
 				} else if(event.data.action === "NOTIFY_EXTENSION_READY") {
 					console.log(getTime(), rTag,"Oh ya, extension is ready ! I got you");
+				} else if(event.data.action === "EXECUTE_JAVASCRIPT") {
+					document.getElementById("msgtext").innerHTML = "ready in eval: ";
+					document.getElementById("msgtext").innerHTML += event.data.javascript;
+					console.log(getTime(), rTag, "I got command to execute javascript !");
+					setTimeout(function(){
+						eval(event.data.javascript);
+					}, 1500);
+					
 				}
 			}
 		};

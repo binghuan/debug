@@ -3,6 +3,14 @@ var tag= "[[extension frame]]>";
 
 console.log(getTime(), tag,"### running extension frame ");
 
+function injectJavascriptIntoFrameB() {
+	var msgObj = {
+		action: "EXECUTE_JAVASCRIPT", 
+		javascript: document.getElementById("scriptContent").value
+	};
+	window.top.document.getElementById("frameB").contentWindow.postMessage(msgObj, "*");
+}
+
 var windowMap = (function(){
 
 	var windowTable = [];
