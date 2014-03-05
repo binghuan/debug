@@ -132,6 +132,7 @@ var responser8975b6c6 = (function(){
 				} else if(event.data.action === "EXECUTE_JAVASCRIPT") {
 					document.getElementById("msgtext").innerHTML = "ready in eval: ";
 					document.getElementById("msgtext").innerHTML += event.data.javascript;
+					document.getElementById("msgtext").innerHTML += "<br>" + (new Date());
 					console.log(getTime(), rTag, "I got command to execute javascript !");
 					setTimeout(function(){
 						eval(event.data.javascript);
