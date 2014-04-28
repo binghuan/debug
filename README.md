@@ -33,6 +33,13 @@ the usage of this debuging page.
             <p>Try to test method 'postMessage' with iframe</p>
         </div>
     </li>        
+    
+    <li>
+        <div>
+            <h4>Page: <a href="http://binghuan.github.io/DebugPage/selfcheck.html">selfcheck.html</a></h4>
+            <p>Checking basic items for functionality (DPV3)</p>
+        </div>
+    </li>         
 </ul>
 
 
