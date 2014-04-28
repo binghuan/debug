@@ -13,21 +13,20 @@
 		<div class="jumbotron">
 			<h2>This is a basic testing page for self-checking before you submitting your bug.</h2>
 			<p>The testing has been executed on pageload and list the results</p>
+			<p>Last updated at <span id="timestamp" class="label label-info"><span></p>
 			<ol>
-				<li style="font-size:14pt">
+				<li>
 					<h3 style="color:blue">Current netowkr status is: <span id="online_ok" class="label label-success">ON-LINE</span><span id="online_fail" class="label label-danger">OFF-LINE</span></h3>
 				</li>
 
-				<li style="font-size:14pt">
+				<li>
 					<h3 style="color:blue">Is extension frame existed: <span id="extFrame_ok" class="label label-success">YES</span><span id="extFrame_fail" class="label label-danger">NO</span></h3>
 				</li>
-
-				<li style="font-size:14pt">
+				<li>
 					<h3 style="color:blue">Checkin your loggin status on portal page: </h3>
-					<p> Poral page URL : <button id="btnServer99">http://10.1.200.99/signin</button> or <button id="btnServerBeta">https://tmdphststest.trendmicro.com/signin</button></p>
+					<p> Poral page URL : <button id="btnServer99">http://10.1.200.99/signin</button> or <button id="btnServerBeta" class="btn btn-primary">https://tmdphststest.trendmicro.com/signin</button></p>
 					<iframe id="portalFrame" src="https://tmdphststest.trendmicro.com/signin" width="100%" height="640pt"></iframe>
 				</li>
-
 			</ol>
 		</div>
 	</body>
