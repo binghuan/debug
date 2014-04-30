@@ -37,10 +37,10 @@
 				console.log("typeof event.data: " + (typeof event.data))
 				if((typeof event.data) === "string") {
 					console.log("typeof event.data: " + event.data)
-					text.innerHTML = text.innerHTML + "<br>" + (new Date()) + (event.data);
+					text.innerHTML = text.innerHTML + "<br> typeof event.data is " + typeof event.data + "; " + (new Date()) + (event.data);
 				} else {
 					console.log("typeof event.data: " + event.data)
-					text.innerHTML = text.innerHTML + "<br>" + (new Date()) + JSON.stringify(event.data);
+					text.innerHTML = text.innerHTML + "<br> typeof event.data is " + typeof event.data + "; " + (new Date()) + JSON.stringify(event.data);
 				}
 			}
 
