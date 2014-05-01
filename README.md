@@ -40,6 +40,13 @@ the usage of this debuging page.
             <p>Checking basic items for functionality (DPV3)</p>
         </div>
     </li>         
+    
+    <li>
+        <div>
+            <h4>Page: <a href="http://binghuan.github.io/DebugPage/bookmarkMaker.html">selfcheck.html</a></h4>
+            <p>Generate bookmark link by your way</p>
+        </div>
+    </li>             
 </ul>
 
 
