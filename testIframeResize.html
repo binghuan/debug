@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Iframe Resize</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="jquery-1.11.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src='js/bootstrap.min.js'></script>
+    <script src='testIframeResize.js'></script>
+  </head>
+  <body>
+
+    <iframe id='topbarFrame' src='blank.html' width='100%' height='75pt' style="background-color:red;z-index:2147483647;position:fixed;visibility:display"></iframe>
+    <iframe id='lightboxFrame' src='pageWithCenterMsg.html' width='100%' height='100%' style="background-color:blue;z-index:2147483647;position:fixed;visibility:hidden"></iframe>
+    <p>Hello, World !</p>
+
+    <!-- controller -->
+    <div style='top:200px;position:absolute' >
+        <button id='btn_biggeriframeNoAnim' class='btn btn-primary'>Make iframe to be bigger without animation</button>
+        <button id='btn_reset' class='btn btn-primary'>Reset Iframe</button>
+        <button id='btn_showLightBox' class='btn btn-primary'>Show LightBox</button>
+    </div>
+  </body>
+</html>
