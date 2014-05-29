@@ -1,5 +1,9 @@
 function runTest() {
 
+	// ### check current user-agent
+
+	document.getElementById("label_userAgent").innerHTML = navigator.userAgent;
+
 	// ### run test 1: check online or not.
 	if(navigator.onLine === true) {
 		document.getElementById("online_fail").style.visibility = "hidden";
@@ -17,12 +21,12 @@ function runTest() {
 
 	var portalFrame = document.getElementById("portalFrame")
 	$("#btnServer99").click(function() {
-		console.log("### >> ready to load url: http://10.1.200.99/signin");
+		console.log("### >> ready to load url: http://10.1.201.174/signin");
 		$("#btnServerBeta").attr("class", 'btn btn-default');
 		$("#btnServer99").attr("class", 'btn btn-primary');
 		portalFrame.src = location.href.replace("selfcheck.html", "blank.html");
 		setTimeout(function(){
-			portalFrame.src = "http://10.1.200.99/signin";	
+			portalFrame.src = "http://10.1.201.174/signin";
 		}, 1000)
 	});
 
@@ -34,7 +38,7 @@ function runTest() {
 		setTimeout(function(){
 			portalFrame.src = "https://tmdphststest.trendmicro.com/signin";
 		}, 1000)
-		
+
 	});
 
 	document.getElementById("timestamp").innerHTML = (new Date()).toString();
