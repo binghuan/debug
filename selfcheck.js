@@ -16,7 +16,7 @@ function runTest() {
 
 	document.getElementById("timestamp").innerHTML = (new Date()).toString();
 
-	if(mobilecheck === true) {
+	if(mobilecheck() === true) {
 		document.getElementById("typeOfPlatform").innerHTML = "Mobile";
 	} else {
 		document.getElementById("typeOfPlatform").innerHTML = "Desktop";
