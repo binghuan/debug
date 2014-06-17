@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="try to bind input">
+    <meta name="author" content="BH_Lin">
+    <link rel="shortcut icon" href="">
+
+    <title>Try Bind Input</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="jquery-1.11.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src='js/bootstrap.min.js'></script>
+
+    <script>
+
+        $('document').ready(function() {
+            console.log('document is ready');
+
+        });
+
+        function clickbutton() {
+            console.log('click');
+            var msgObj = {
+                    action: 10001
+            };
+            var strObj = JSON.stringify(msgObj);
+            window.top.postMessage(strObj, "*");
+        }
+
+    </script>
+
+  </head>
+
+  <body style='background-image:url(img/pwdGenerator.png);background-repeat: no-repeat;'>
+
+    <div class="container">
+        <button onclick='clickbutton()' class='btn btn-primary' style='position:absolute; top:350px; left:10px'>Use the pwd</button>
+    </div> <!-- /container -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>
