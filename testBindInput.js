@@ -84,8 +84,8 @@ $('document').ready(function() {
 
                     pageFrame = document.createElement('iframe');
                     pageFrame.id = "pageFrame";
-                    pageFrame.height = "400px";
-                    pageFrame.width = "406px";
+                    pageFrame.height = "160px";
+                    pageFrame.width = inputFieldPos.width;
                     pageFrame.src = 'testBindInputInner.html';
                     pageFrame.setAttribute("frameborder",'2');
                     pageFrame.setAttribute('style', 'z-index: 255;position: absolute; top:' + inputFieldPos.bottom + 'px;left:' + inputFieldPos.left+ 'px;');
@@ -112,6 +112,8 @@ $('document').ready(function() {
 
 });
 
+var REQUEST_AUTOFILL_PASSWORD_VIA_GENERATOR = 11034;
+
 function messageHandler(event) {
     var eventData;
     console.log("receive msg: ", event.data);
@@ -122,9 +124,9 @@ function messageHandler(event) {
         return;
     }
 
-    if(eventData.action === 10001) {
+    if(eventData.action === REQUEST_AUTOFILL_PASSWORD_VIA_GENERATOR) {
         console.log("autofill !! ");
-        pwdField.value = '9MK10op1CxG';
+        pwdField.value = eventData.strongPassword;
         $('#pageFrame').hide();
     }
 }

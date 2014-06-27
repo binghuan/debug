@@ -20,28 +20,53 @@
 
     <script>
 
+        var REQUEST_AUTOFILL_PASSWORD_VIA_GENERATOR = 11034;
         $('document').ready(function() {
             console.log('document is ready');
+
 
         });
 
         function clickbutton() {
             console.log('click');
             var msgObj = {
-                    action: 10001
+                    action: REQUEST_AUTOFILL_PASSWORD_VIA_GENERATOR,
+                    strongPassword: $('#newPwd').val()
             };
             var strObj = JSON.stringify(msgObj);
             window.top.postMessage(strObj, "*");
+        }
+
+        function generatePassword() {
+            var length = 8,
+                charset = "abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+                retVal = "";
+            for (var i = 0, n = charset.length; i < length; ++i) {
+                retVal += charset.charAt(Math.floor(Math.random() * n));
+            }
+            //return retVal;
+
+            $('#newPwd').val(retVal);
         }
 
     </script>
 
   </head>
 
-  <body style='background-image:url(img/pwdGenerator.png);background-repeat: no-repeat;'>
+  <!--<body style='background-image:url(img/pwdGenerator.png);background-repeat: no-repeat;'>-->
+  <body style='padding: 20px;background-color:beige;'>
 
     <div class="container">
-        <button onclick='clickbutton()' class='btn btn-primary' style='position:absolute; top:350px; left:10px'>Use the pwd</button>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Password:</label>
+        <input type="text" class="form-control" id="newPwd">
+      </div>
+
+      <button id='btnGeneratePwd' onclick='generatePassword()' class='btn btn-danger'>
+          <span class="glyphicon glyphicon-repeat"></span>
+          Create</button>
+      <button onclick='clickbutton()' class='btn btn-primary'>Ok! Use this</button>
+
     </div> <!-- /container -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
