@@ -49,6 +49,11 @@ $(document).mouseup(function (e)
     }
 });
 
+function isInTargetArea(eventPos, inputPos) {
+    console.log('inputFieldPos right:' + inputPos.right + ', bottom:' + inputPos.bottom);
+    return ((inputPos.width - eventPos.x) <= 20) ;
+}
+
 $('document').ready(function() {
 
     $('#bindinput').click(function() {
@@ -59,13 +64,20 @@ $('document').ready(function() {
         console.log("---> bind input field > done");
     });
 
+	$('#password').on('mousemove', function(e) {
+		console.log(this.getBoundingClientRect());
+        var inputFieldPos = this.getBoundingClientRect();
+        if(isInTargetArea({x: e.offsetX, y: e.offsetY}, inputFieldPos) === true) {
+            $(this).css('cursor', 'pointer');
+        } else {
+            $(this).css('cursor', '');
+        }
+	});
+
     $('#password').click(function(e) {
         console.log(this.getBoundingClientRect());
         var inputFieldPos = this.getBoundingClientRect();
-        var pos = getCursorPosition(e);
-        console.log('inputFieldPos right:' + inputFieldPos.right + ', bottom:' + inputFieldPos.bottom);
-        if((inputFieldPos.right - pos.x < 30) &&
-            (inputFieldPos.bottom - pos.y < 30) ) {
+        if(isInTargetArea({x: e.offsetX, y: e.offsetY}, inputFieldPos) === true) {
                 console.log('hit in area !!');
 
                 if(document.getElementById('pageFrame') == undefined) {
@@ -79,9 +91,12 @@ $('document').ready(function() {
                     pageFrame.setAttribute('style', 'z-index: 255;position: absolute; top:' + inputFieldPos.bottom + 'px;left:' + inputFieldPos.left+ 'px;');
                     document.body.appendChild(pageFrame);
                 } else {
-                    if($('#pageFrame').is(":visible") === true) {
+                    var isVisible = $('#pageFrame').is(":visible");
+                    if(isVisible === true) {
+                        console.log("ready to hide pageFrame");
                         $('#pageFrame').hide();
                     } else {
+                        console.log("ready to show pageFrame");
                         $('#pageFrame').show();
                     }
 
