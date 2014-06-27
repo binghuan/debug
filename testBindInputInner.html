@@ -30,7 +30,7 @@
         function clickbutton() {
             console.log('click');
             var msgObj = {
-                    action: REQUEST_AUTOFILL_PASSWORD_VIA_GENERATOR,
+                    actionType: REQUEST_AUTOFILL_PASSWORD_VIA_GENERATOR,
                     strongPassword: $('#newPwd').val()
             };
             var strObj = JSON.stringify(msgObj);

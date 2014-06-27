@@ -135,7 +135,7 @@ function messageHandler(event) {
         return;
     }
 
-    if(eventData.action === REQUEST_AUTOFILL_PASSWORD_VIA_GENERATOR) {
+    if(eventData.actionType === REQUEST_AUTOFILL_PASSWORD_VIA_GENERATOR) {
         console.log("autofill !! ");
         //pwdField.value = eventData.strongPassword;
         var inputFieldCount = $('input[type=password]').length;
