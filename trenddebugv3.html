@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="description" content="">
+	    <meta name="author" content="BH_Lin">
+
+
+		<link rel="stylesheet" href="css/bootstrap.min.css"  media="screen">
+		<link rel="stylesheet" href="css/doc.min.css"  media="screen">
+
+		<!-- position Daniel -->
+		<script type="text/javascript" src="json3.min.js"></script>
+		<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+		<!-- Add following plugin for jquery to solve cross-domain ajax call on IE8 /9 @20140505-->
+		<script type="text/javascript" src="jQuery.XDomainRequest.js"></script>
+
+		<script>
+			var tag = "[[debugPage]]";
+			var pTag = "[Profiles]";
+			var logTabId = Math.floor(Math.random() * 1000) + 1;
+		</script>
+
+
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		  <script src="js/html5shiv.js"></script>
+		  <script src="js/respond.min.js"></script>
+		<![endif]-->
+
+		<script src="jquery-1.11.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="trenddebugv3.js"></script>
+	</head>
+	<body class="jumbotron">
+
+		<div class="header">
+	        <ul class="nav nav-pills pull-left">
+	          	<li class="active">
+	          		<span id="typeOfPlatform" class="label label-info" style='font-size:14px'>Mobile/Desktop<span>
+	          	</li>
+
+	          	<li>
+					<span id="online_ok" class="label label-success" style='font-size:14px'>ON-LINE</span><span id="online_fail" class="label label-danger">OFF-LINE</span>
+				</li>
+				<li>
+					<a href='cmd.html'>Open Command Prompt</a>
+				</li>
+				<li>
+					<button onclick="runTest()">Update Info.</button>
+				</li>
+	        </ul>
+		</div>
+		<br>
+
+
+		<div>
+			<h2>Info. of Extension Frame.</h2>
+			<p>Screenshot at: <span id="timestamp" class="label label-info"><span></p>
+			<ol>
+				<li>
+					<h4 style="color:blue">Current user-Agent is: <p id="label_userAgent" style="color:red;"></p></h4>
+				</li>
+
+				<li>
+					<h4 style="color:blue" onclick='checkExtFrameExist()'>Is extension frame existed: <span id="extFrameStatus" class="label label-success">unknown</span></h4>
+				</li>
+				<li>
+					<h4 style="color:blue">Login status: <span id="loginStatus" class="label label-primary">9410001</span></h4>
+					<p class='label label-danger' id='errorcodeMsg'>Hello</p>
+				</li>
+				<li>
+					<h4 style="color:blue">Account Type: <span id="accountType" class="label label-primary">Family Account</span></h4>
+				</li>
+
+				<li>
+					<h4 style="color:blue">Is Masterpin Validated:
+						<span id="pinOk" class="label label-success">OK</span><span id="pinFail" class="label label-danger">FAIL</span>
+					</h4>
+				</li>
+
+				<li>
+					<h4 style="color:blue">Is MasterpinTable eixsted:
+						<span id="pintableYes" class="label label-success">Yes</span><span id="pintableNo" class="label label-danger">No</span>
+					</h4>
+				</li>
+
+				<li>
+					<h4 style="color:blue">yamatoInfo: <span id="yamatoInfo" class="label label-primary">None</span></h4>
+				</li>
+
+				<li>
+					<h4 style="color:blue">getUserSettingDB(): </h4>
+					<p id="userSettings" style="color:red;font-size:14px"></p>
+				</li>
+			</ol>
+		</div>
+	</body>
+</html>
