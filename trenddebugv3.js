@@ -165,7 +165,6 @@ function runTest() {
 	}
 
 	setInterval(checkExtFrameExist, 1000);
-	//checkExtFrameExist();
 
 	document.getElementById("timestamp").innerHTML = (new Date()).toString();
 
@@ -181,6 +180,7 @@ function runTest() {
 	} else {
 		document.getElementById("yamatoInfo").innerHTML = "No data";
 	}
+
 
 	// ### check DPV3 status
 	extensionFrame = document.getElementById("extensionFrame");
@@ -205,6 +205,23 @@ function checkExtFrameExist() {
 	} else {
 		document.getElementById("extFrameStatus").innerHTML = "OK";
 	}
+
+    var head = $("head script");
+    var hit = false;
+    for(var i=0; i< head.length; i++) {
+    //    console.log("check: " + head[i].src);
+        if(head[i].src.indexOf("extensionFrame/content_script.js") != -1) {
+            console.log("hit: " + head[i].src);
+            hit = true;
+            break;
+        }
+    }
+
+    if(hit === true) {
+        document.getElementById("contentScriptStatus").innerHTML = "OK";
+    } else {
+        document.getElementById("contentScriptStatus").innerHTML = "Not found";
+    }
 }
 
 $("document").ready(function() {
