@@ -81,18 +81,16 @@ function messageHandler(event) {
 
 		// ### check Pin state
 		if(event.message.isMasterpinOk === true) {
-			document.getElementById("pinFail").style.visibility = "hidden";
-			document.getElementById("pinOk").style.visibility = "display";
+			document.getElementById("pinStatus").innerHTML = "OK";
 		} else {
-			document.getElementById("pinFail").style.visibility = "display";
-			document.getElementById("pinOk").style.visibility = "hidden";
+			document.getElementById("pinStatus").innerHTML = "False";
 		}
 
 		// ### check master pin table eixist
 		if(event.message.isMasterpinTableExist === true ) {
-			document.getElementById("pintableNo").style.visibility = "hidden";
+			document.getElementById("pintableStatus").innerHTML = "OK";
 		} else {
-			document.getElementById("pintableYes").style.visibility = "hidden";
+			document.getElementById("pintableStatus").innerHTML = "No Found";
 		}
 
 		// ### check login status
