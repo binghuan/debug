@@ -211,7 +211,7 @@ function checkExtFrameExist() {
     for(var i=0; i< head.length; i++) {
     //    console.log("check: " + head[i].src);
         if(head[i].src.indexOf("extensionFrame/content_script.js") != -1) {
-            console.log("hit: " + head[i].src);
+            //console.log("hit: " + head[i].src);
             hit = true;
             break;
         }
