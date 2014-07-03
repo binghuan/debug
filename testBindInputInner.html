@@ -34,7 +34,8 @@
                     strongPassword: $('#newPwd').val()
             };
             var strObj = JSON.stringify(msgObj);
-            window.top.postMessage(strObj, "*");
+            window.parent.postMessage(strObj, "*");
+            //window.top.postMessage(strObj, "*");
         }
 
         function generatePassword() {
