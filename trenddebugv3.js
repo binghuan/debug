@@ -16,6 +16,17 @@ var errorCode = {
 };
 
 
+function setLastAccountID(value) {
+    if(value != undefined) {
+        localStorage.accountID = value;
+        console.log('setLastAccountID: ' + value);
+    }
+}
+
+function getLastAccountID(value) {
+    console.log('getLastAccontID: ' + localStorage.accountID);
+}
+
 var ACTION_OF_HAND_SHAKE = {
             WINDOW_CHECKIN: 210001,
             NOTIFY_EXTENSION_READY:210002,
@@ -100,6 +111,10 @@ function messageHandler(event) {
 
 		// ### check User Settings
 		document.getElementById("userSettings").innerText = JSON.stringify(event.message.userSetting, null, 4);
+
+        document.getElementById("accountIdNow").innerText = JSON.stringify(event.message.accountID, null, 4);
+        setLastAccountID(event.message.accountID);
+        document.getElementById("accountIdBefore").innerText = JSON.stringify(getLastAccountID(), null, 4);
 
 		break;
 	}
