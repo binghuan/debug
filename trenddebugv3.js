@@ -26,6 +26,7 @@ function messageHandler(event) {
 
 
     if (event.origin !== "https://10.1.201.174" &&
+        event.origin !== "https://10.1.201.186" &&
 		event.origin !== "https://pwm-mubeta.trendmicro.com" &&
 		event.origin !== "https://tmdphststest.directpass.com") {
         return;
