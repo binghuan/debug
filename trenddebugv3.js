@@ -31,6 +31,7 @@ function messageHandler(event) {
         return;
     }
 
+    $("#scriptOrigin").text(event.origin.toString());
 
 	//console.log('Receive:', event.data);
 
@@ -181,6 +182,9 @@ function runTest() {
 	}
 
 
+
+
+
 	// ### check DPV3 status
 	extensionFrame = document.getElementById("extensionFrame");
 	var msgObj = {};
@@ -207,6 +211,7 @@ function checkExtFrameExist() {
 
     var head = $("head script");
     var hit = false;
+    var scriptOrigin = "Unknown";
     for(var i=0; i< head.length; i++) {
     //    console.log("check: " + head[i].src);
         if(head[i].src.indexOf("extensionFrame/content_script.js") != -1) {
