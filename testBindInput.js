@@ -85,10 +85,11 @@ function bindInputFields() {
 
                     pwdGenerator = document.createElement('iframe');
                     pwdGenerator.id = "pwdGenerator";
-                    pwdGenerator.height = "160px";
+                    pwdGenerator.height = "180px";
+                    pwdGenerator.scrolling="no";
                     pwdGenerator.width = inputFieldPos.width;
                     pwdGenerator.src = 'testBindInputInner.html';
-                    pwdGenerator.setAttribute("frameborder",'2');
+                    pwdGenerator.setAttribute("frameborder",'0');
                     pwdGenerator.setAttribute('style', 'z-index: 255;position: absolute; top:' + inputFieldPos.bottom + 'px;left:' + inputFieldPos.left+ 'px;');
                     document.body.appendChild(pwdGenerator);
                 } else {
@@ -130,10 +131,10 @@ function bindInputFields2() {
 
         pwdGenerator = document.createElement('iframe');
         pwdGenerator.id = "pwdGenerator";
-        pwdGenerator.height = "160px";
-
+        pwdGenerator.height = "115px";
+        pwdGenerator.scrolling="no";
         pwdGenerator.src = 'testBindInputInner.html';
-        pwdGenerator.setAttribute("frameborder",'2');
+        pwdGenerator.setAttribute("frameborder",'0');
         pwdGenerator.setAttribute('style', 'z-index: 255;position: absolute; display:none');
         document.body.appendChild(pwdGenerator);
     }
@@ -214,6 +215,16 @@ function bindInputFields2() {
             windowPostMessage(document.getElementById('pwdGenerator').contentWindow, msgObj, "*");
 
         }
+    });
+
+    $(pwdField).on('keypress', function(e) {
+        var msgObj = {
+            action: SHOW_STRONG_PASSWORD_VIA_GENERATOR,
+            strongPassword: e.target.value
+        };
+
+        console.log("ready to send message to UI: ", e.target.value);
+        windowPostMessage(document.getElementById('pwdGenerator').contentWindow, msgObj, "*");
     });
 
     console.log("---> bind input field > done");

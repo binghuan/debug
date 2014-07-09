@@ -66,6 +66,8 @@
                     var eventData = JSON.parse(e.data);
                     if(eventData.action === SHOW_STRONG_PASSWORD_VIA_GENERATOR) {
                         console.log("receive aciton: SHOW_STRONG_PASSWORD_VIA_GENERATOR _" + eventData.strongPassword + "_");
+                        document.getElementById("newPwd").disabled = true;
+                        $("#newPwd").css("background-color", "white");
                         $('#newPwd').val(eventData.strongPassword);
                     } else {
                         return ;
@@ -86,12 +88,13 @@
   </head>
 
   <!--<body style='background-image:url(img/pwdGenerator.png);background-repeat: no-repeat;'>-->
-  <body style='padding: 20px;background-color:beige;'>
+  <body style='padding: 20px;background-color:#eee;'>
 
     <div class="container">
       <div class="form-group">
-        <label for="exampleInputEmail1">Password:</label>
+        <!--<label for="exampleInputEmail1">Password:</label>-->
         <input type="text" class="form-control" id="newPwd">
+        <label for="exampleInputEmail1">DirectPass will automatically remember the strong password shown above</label>
       </div>
 
       <button id='btnGeneratePwd' onclick='generatePassword()' class='btn btn-danger'>
