@@ -21,10 +21,16 @@
     <script>
 
         var REQUEST_AUTOFILL_PASSWORD_VIA_GENERATOR = 11034;
+        var SHOW_STRONG_PASSWORD_VIA_GENERATOR= 11035;
+
         $('document').ready(function() {
             console.log('document is ready');
 
             generatePassword();
+
+            if(incommingPwd != undefined) {
+                $('#newPwd').val(eventData.strongPassword);
+            }
         });
 
         function clickbutton() {
@@ -48,6 +54,31 @@
             //return retVal;
 
             $('#newPwd').val(retVal);
+        }
+
+
+        var incommingPwd ;
+        function messageHandler(e) {
+
+            console.log(e.data);
+
+            if((typeof e.data) === "string") {
+                    var eventData = JSON.parse(e.data);
+                    if(eventData.action === SHOW_STRONG_PASSWORD_VIA_GENERATOR) {
+                        console.log("receive aciton: SHOW_STRONG_PASSWORD_VIA_GENERATOR _" + eventData.strongPassword + "_");
+                        $('#newPwd').val(eventData.strongPassword);
+                    } else {
+                        return ;
+                    }
+            } else {
+                return;
+            }
+        }
+
+        if(window.addEventListener) {
+            window.addEventListener('message', messageHandler);
+        } else {
+            window.addEventListener('onmessage', messageHandler);
         }
 
     </script>

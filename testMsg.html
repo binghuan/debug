@@ -13,7 +13,7 @@
 		<h3>Please postMessage to me</h3><br>
 		<p id='textBoard'>First Line.</p><br>
 		<input id='targetUrl' type='text' size='100px'><button id='loadUrl' class='btn btn-primary' value='load url'>Load URL</button><br>
-		<iframe id='pageFrame' width='800pt' height='600pt'></iframe>
+		<iframe id='pwdGenerator' width='800pt' height='600pt'></iframe>
 		<script>
 
 			if(console && console.log) {
@@ -23,7 +23,7 @@
 				};
 			}
 
-			var myframe = document.getElementById('pageFrame');
+			var myframe = document.getElementById('pwdGenerator');
 			var text = document.getElementById('textBoard');
 			var urlAddress = document.getElementById('targetUrl');
 			$("#loadUrl").click(function() {
