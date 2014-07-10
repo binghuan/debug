@@ -216,7 +216,7 @@ function bindInputFields2() {
 
     });
 
-    $(pwdField).on('keypress', function(e) {
+    $(pwdField).on('input', function(e) {
         var msgObj = {
             action: SHOW_STRONG_PASSWORD_VIA_GENERATOR,
             strongPassword: e.target.value
