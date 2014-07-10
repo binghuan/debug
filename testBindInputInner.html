@@ -91,16 +91,17 @@
   <body style='padding: 20px;background-color:#eee;'>
 
     <div class="container">
-      <div class="form-group">
+      <div class="form-group" >
         <!--<label for="exampleInputEmail1">Password:</label>-->
-        <input type="text" class="form-control" id="newPwd">
-        <label for="exampleInputEmail1">DirectPass will automatically remember the strong password shown above</label>
+        <input type="text" class="form-control" id="newPwd" style='font-size:24px;border:0'>
+        <hr class="divider" style="border-top:1px solid #D8D8D8;margin-top:10px;margin-bottom:8px">
+        <label for="exampleInputEmail1" style='font-size:12px;color:#AAAAAA;'>DirectPass will automatically remember the strong password shown above</label>
       </div>
 
       <button id='btnGeneratePwd' onclick='generatePassword()' class='btn btn-danger'>
           <span class="glyphicon glyphicon-repeat"></span>
           Create</button>
-      <button onclick='clickbutton()' class='btn btn-primary'>Ok! Use this</button>
+      <button onclick='clickbutton()' class='btn btn-primary'>Ok, Use this</button>
 
     </div> <!-- /container -->
     <!-- Bootstrap core JavaScript
