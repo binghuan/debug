@@ -27,6 +27,8 @@
         $('document').ready(function() {
             console.log('document is ready');
 
+    		$("#layout_tips").hide();
+
             generatePassword();
 
             if(incommingPwd != undefined) {
@@ -71,7 +73,6 @@
                         $("#layout_tips").hide();
 						$("#layout_showpwd").show();
 
-
                         document.getElementById("newPwd").disabled = true;
                         $("#newPwd").css("background-color", "white");
                         $('#newPwd').val(eventData.strongPassword);
@@ -105,7 +106,7 @@
   <body style='padding: 20px;background-color:#eee;'>
 
     <div class="container">
-		<div id='layout_tips' class="form-grouptips" >
+		<div id='layout_tips' class="form-grouptips">
 	        <label for="exampleInputEmail1" style='font-size:12px;color:#AAAAAA;'>Click here ot DirectPass help you generate a strong password</label>
 		</div>
 
