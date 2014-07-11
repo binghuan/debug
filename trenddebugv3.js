@@ -156,33 +156,38 @@ function runTest() {
 	// ### check current user-agent
 	console.log('>> runTest()');
 
+
+	console.log('>> ready to check userAgent');
 	document.getElementById("label_userAgent").innerHTML = navigator.userAgent;
 
-// ### run test 1: check online or not
+	console.log('#1: check online or not');
 	if(navigator.onLine === true) {
 		document.getElementById("online_fail").style.visibility = "hidden";
 	} else {
 		document.getElementById("online_ok").style.visibility = "hidden";
 	}
 
+	console.log('#2: check extensionFrame');
 	setInterval(checkExtFrameExist, 1000);
 
+	console.log('#3: print timestamp');
 	document.getElementById("timestamp").innerHTML = (new Date()).toString();
 
+	console.log('#4');
 	if(mobilecheck() === true) {
 		document.getElementById("typeOfPlatform").innerHTML = "Mobile";
 	} else {
 		document.getElementById("typeOfPlatform").innerHTML = "Desktop";
 	}
 
-	// ### check yamatoInfo
+	console.log('#5');
 	if(window.yamatoInfo != null && yamatoInfo.proxyType != undefined) {
 		document.getElementById("yamatoInfo").innerHTML = JSON.stringify(yamatoInfo);
 	} else {
 		document.getElementById("yamatoInfo").innerHTML = "No data";
 	}
 
-
+	console.log('#6');
 	if( (navigator.userAgent.match(/firefox|safari|chrome|trident|android/gi) != undefined) && // check browser support
     	(navigator.userAgent.toLowerCase().indexOf('directpass_ios') === -1) ){
 		document.getElementById("scriptRun").innerHTML = "Yes";
@@ -190,8 +195,7 @@ function runTest() {
 		document.getElementById("scriptRun").innerHTML = "No";
 	}
 
-
-	// ### check DPV3 status
+	console.log('#7');
 	extensionFrame = document.getElementById("extensionFrame");
 	var msgObj = {};
 	if(extensionFrame != undefined) {
