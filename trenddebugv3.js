@@ -183,7 +183,12 @@ function runTest() {
 	}
 
 
-
+	if( (navigator.userAgent.match(/firefox|safari|chrome|trident|android/gi) != undefined) && // check browser support
+    	(navigator.userAgent.toLowerCase().indexOf('directpass_ios') === -1) ){
+		document.getElementById("scriptRun").innerHTML = "Yes";
+	} else {
+		document.getElementById("scriptRun").innerHTML = "No";
+	}
 
 
 	// ### check DPV3 status
