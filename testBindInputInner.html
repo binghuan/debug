@@ -67,9 +67,10 @@
                     var eventData = JSON.parse(e.data);
                     if(eventData.action === SHOW_STRONG_PASSWORD_VIA_GENERATOR) {
                         console.log("receive aciton: SHOW_STRONG_PASSWORD_VIA_GENERATOR _" + eventData.strongPassword + "_");
-
+						$("body").css("background", "#eee");
                         $("#layout_tips").hide();
 						$("#layout_showpwd").show();
+
 
                         document.getElementById("newPwd").disabled = true;
                         $("#newPwd").css("background-color", "white");
@@ -77,6 +78,7 @@
 
                     } else if( eventData.action === SHOW_TOOLTIP_FOR_GENERATOR) {
 						console.log("receive aciton: SHOW_TOOLTIP_FOR_GENERATOR");
+						$("body").css("background", "black");
 						$("#layout_tips").show();
 						$("#layout_showpwd").hide();
 						$("#btnGeneratePwd").hide();

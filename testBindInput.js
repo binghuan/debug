@@ -82,7 +82,6 @@ function bindInputFields() {
                 console.log('hit in area !!');
 
                 if(document.getElementById('pwdGenerator') == undefined) {
-
                     pwdGenerator = document.createElement('iframe');
                     pwdGenerator.id = "pwdGenerator";
                     pwdGenerator.height = "180px";
