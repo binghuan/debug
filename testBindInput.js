@@ -255,6 +255,16 @@ $('document').ready(function() {
 
 var REQUEST_AUTOFILL_PASSWORD_VIA_GENERATOR = 11034;
 var SHOW_STRONG_PASSWORD_VIA_GENERATOR= 11035;
+var SHOW_TOOLTIP_FOR_GENERATOR = 11043;
+
+function testShowTips() {
+    var msgObj = {
+            action: SHOW_TOOLTIP_FOR_GENERATOR
+        };
+
+    console.log("ready to send message to UI tips");
+    windowPostMessage(document.getElementById('pwdGenerator').contentWindow, msgObj, "*");
+}
 
 function messageHandler(event) {
     var eventData;

@@ -22,6 +22,7 @@
 
         var REQUEST_AUTOFILL_PASSWORD_VIA_GENERATOR = 11034;
         var SHOW_STRONG_PASSWORD_VIA_GENERATOR= 11035;
+        var SHOW_TOOLTIP_FOR_GENERATOR = 11043;
 
         $('document').ready(function() {
             console.log('document is ready');
@@ -66,9 +67,20 @@
                     var eventData = JSON.parse(e.data);
                     if(eventData.action === SHOW_STRONG_PASSWORD_VIA_GENERATOR) {
                         console.log("receive aciton: SHOW_STRONG_PASSWORD_VIA_GENERATOR _" + eventData.strongPassword + "_");
+
+                        $("#layout_showtips").hide();
+						$("#layout_showpwd").show();
+
                         document.getElementById("newPwd").disabled = true;
                         $("#newPwd").css("background-color", "white");
                         $('#newPwd').val(eventData.strongPassword);
+
+                    } else if( eventData.action === SHOW_TOOLTIP_FOR_GENERATOR) {
+						console.log("receive aciton: SHOW_TOOLTIP_FOR_GENERATOR");
+						$("#layout_showtips").show();
+						$("#layout_showpwd").hide();
+						$("#btnGeneratePwd").hide();
+						$("#btnUseThis").hide();
                     } else {
                         return ;
                     }
@@ -91,7 +103,11 @@
   <body style='padding: 20px;background-color:#eee;'>
 
     <div class="container">
-      <div class="form-group" >
+		<div id='layout_tips' class="form-grouptips" >
+	        <label for="exampleInputEmail1" style='font-size:12px;color:#AAAAAA;'>Click here ot DirectPass help you generate a strong password</label>
+		</div>
+
+      <div id='layout_showpwd' class="form-group" >
         <!--<label for="exampleInputEmail1">Password:</label>-->
         <input type="text" class="form-control" id="newPwd" style='font-size:24px;border:0'>
         <hr class="divider" style="border-top:1px solid #D8D8D8;margin-top:10px;margin-bottom:8px">
@@ -101,7 +117,7 @@
       <button id='btnGeneratePwd' onclick='generatePassword()' class='btn btn-danger'>
           <span class="glyphicon glyphicon-repeat"></span>
           Create</button>
-      <button onclick='clickbutton()' class='btn btn-primary'>Ok, Use this</button>
+      <button id='btnUseThis' onclick='clickbutton()' class='btn btn-primary'>Ok, Use this</button>
 
     </div> <!-- /container -->
     <!-- Bootstrap core JavaScript
