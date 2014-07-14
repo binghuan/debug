@@ -189,17 +189,29 @@ function runTest() {
 
 	console.log('#5');
 	if(window.yamatoInfo != null && yamatoInfo.proxyType != undefined) {
-		document.getElementById("yamatoInfo").innerHTML = JSON.stringify(yamatoInfo);
+
+        if(document.getElementById("yamatoInfo") != undefined) {
+            document.getElementById("yamatoInfo").innerHTML = JSON.stringify(yamatoInfo);
+        }
+
 	} else {
-		document.getElementById("yamatoInfo").innerHTML = "No data";
+        if(document.getElementById("yamatoInfo") != undefined) {
+            document.getElementById("yamatoInfo").innerHTML = "No data";
+        }
+
 	}
 
 	console.log('#6');
 	if( (navigator.userAgent.match(/firefox|safari|chrome|trident|android/gi) != undefined) && // check browser support
-    	(navigator.userAgent.toLowerCase().indexOf('directpass_ios') === -1) ){
-		document.getElementById("scriptRun").innerHTML = "Yes";
+        (navigator.userAgent.toLowerCase().indexOf('directpass_ios') === -1) ){
+        if(document.getElementById("scriptRun") != undefined) {
+            document.getElementById("scriptRun").innerHTML = "Yes";
+        }
+
 	} else {
-		document.getElementById("scriptRun").innerHTML = "No";
+        if(document.getElementById("scriptRun") != undefined) {
+            document.getElementById("scriptRun").innerHTML = "No";
+        }
 	}
 
 	console.log('#7');
