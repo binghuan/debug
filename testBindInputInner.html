@@ -13,6 +13,10 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="json3.js"></script>
+    <script src="lib/utils.js"></script>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="jquery-1.11.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -24,6 +28,9 @@
         var SHOW_STRONG_PASSWORD_VIA_GENERATOR= 11035;
         var SHOW_TOOLTIP_FOR_GENERATOR = 11043;
 
+        var labelTooltip;
+        var labelDescription;
+
         $('document').ready(function() {
             console.log('document is ready');
 
@@ -34,6 +41,9 @@
             if(incommingPwd != undefined) {
                 $('#newPwd').val(eventData.strongPassword);
             }
+
+            labelTooltip = document.getElementById('dp_tooltips');
+            labelDescription = document.getElementById('dp_decription');
         });
 
         function clickbutton() {
@@ -59,6 +69,24 @@
             $('#newPwd').val(retVal);
         }
 
+        function setupL10n(locale) {
+            var targetLocale = "en-us";
+
+            if(locale != undefined) {
+                targetLocale = locale.toLowerCase();
+            }
+
+            console.log('setup locale:' + targetLocale);
+
+            if((targetLocale === "en-us") && (labelTooltip != undefined)) {
+                labelTooltip.innerHTML = "Click here to DirectPass help you generate a strong password";
+                labelDescription.innerHTML = "DirectPass will automatically remember the strong password shown above";
+            } else if( (targetLocale === "ja-jp") && (labelTooltip != undefined)) {
+                labelTooltip.innerHTML = "パスワードマネージャのヘルプには、ここをクリックすると、強力なパスワードを生成する";
+                labelDescription.innerHTML = "パスワードマネージャが自動的に上に示した強力なパスワードを覚えているだろう";
+            }
+        }
+
 
         var incommingPwd ;
         function messageHandler(e) {
@@ -68,6 +96,9 @@
             if((typeof e.data) === "string") {
                     var eventData = JSON.parse(e.data);
                     if(eventData.action === SHOW_STRONG_PASSWORD_VIA_GENERATOR) {
+
+                        setupL10n(eventData.locale);
+
                         console.log("receive aciton: SHOW_STRONG_PASSWORD_VIA_GENERATOR _" + eventData.strongPassword + "_");
 						$("body").css("background", "#eee");
                         $("#layout_tips").hide();
@@ -78,6 +109,9 @@
                         $('#newPwd').val(eventData.strongPassword);
 
                     } else if( eventData.action === SHOW_TOOLTIP_FOR_GENERATOR) {
+
+                        setupL10n(eventData.locale);
+
 						console.log("receive aciton: SHOW_TOOLTIP_FOR_GENERATOR");
 						$("body").css("background", "black");
 						$("#layout_tips").show();
@@ -107,20 +141,19 @@
 
     <div class="container">
 		<div id='layout_tips' class="form-grouptips">
-	        <label for="exampleInputEmail1" style='font-size:12px;color:#AAAAAA;'>Click here ot DirectPass help you generate a strong password</label>
+	        <label id='dp_tooltips' for="exampleInputEmail1" style='font-size:12px;color:#AAAAAA;'>Click here to DirectPass help you generate a strong password</label>
 		</div>
 
       <div id='layout_showpwd' class="form-group" >
         <!--<label for="exampleInputEmail1">Password:</label>-->
         <input type="text" class="form-control" id="newPwd" style='font-size:24px;border:0'>
         <hr class="divider" style="border-top:1px solid #D8D8D8;margin-top:10px;margin-bottom:8px">
-        <label for="exampleInputEmail1" style='font-size:12px;color:#AAAAAA;'>DirectPass will automatically remember the strong password shown above</label>
+        <label id='dp_decription' for="exampleInputEmail1" style='font-size:12px;color:#AAAAAA;'>DirectPass will automatically remember the strong password shown above</label>
       </div>
 
       <button id='btnGeneratePwd' onclick='generatePassword()' class='btn btn-danger'>
-          <span class="glyphicon glyphicon-repeat"></span>
-          Create</button>
-      <button id='btnUseThis' onclick='clickbutton()' class='btn btn-primary'>Ok, Use this</button>
+          <span class="glyphicon glyphicon-repeat"></span></button>
+      <button id='btnUseThis' onclick='clickbutton()' class='btn btn-primary'>Ok</button>
 
     </div> <!-- /container -->
     <!-- Bootstrap core JavaScript

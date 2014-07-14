@@ -1,5 +1,12 @@
-
-
+if (typeof console === "undefined" || typeof console.log === "undefined") {
+    console = {
+        log: function(){},
+        debug: function(){},
+        warn: function(){},
+        error: function(){},
+        info: function(){}
+    };
+}
 
 var errorCode = {
 //error code

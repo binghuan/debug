@@ -22,22 +22,6 @@ function getCursorPosition(e) {
 
 var pwdGenerator;
 
-
-function windowPostMessage(elementWindow, messageOrObject, targetOrigin) {
-
-	if( true || (navigator.userAgent.indexOf("Trident/4.0") !== -1)||
-		(navigator.userAgent.indexOf("Trident/5.0") !== -1)) {
-		if(typeof messageOrObject === "object") {
-			messageOrObject = JSON.stringify(messageOrObject);
-		}
-	}
-
-	if(elementWindow.postMessage != undefined) {
-
-		elementWindow.postMessage(messageOrObject, targetOrigin);
-	}
-}
-
 function bindInputFields() {
 
     console.log("---> bind input field > start");
@@ -211,7 +195,7 @@ function bindInputFields2() {
         };
 
         console.log("ready to send message to UI: ", e.target.value);
-        windowPostMessage(document.getElementById('pwdGenerator').contentWindow, msgObj, "*");
+        windowPostMessage(document.getElementById('pwdGenerator').contentWindow, msgObj, "*", true);
 
     });
 
@@ -222,7 +206,7 @@ function bindInputFields2() {
         };
 
         console.log("ready to send message to UI: ", e.target.value);
-        windowPostMessage(document.getElementById('pwdGenerator').contentWindow, msgObj, "*");
+        windowPostMessage(document.getElementById('pwdGenerator').contentWindow, msgObj, "*", true);
     });
 
     console.log("---> bind input field > done");
@@ -262,7 +246,7 @@ function testShowTips() {
         };
 
     console.log("ready to send message to UI tips");
-    windowPostMessage(document.getElementById('pwdGenerator').contentWindow, msgObj, "*");
+    windowPostMessage(document.getElementById('pwdGenerator').contentWindow, msgObj, "*", true);
 }
 
 function messageHandler(event) {
