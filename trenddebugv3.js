@@ -163,9 +163,10 @@ function runTest() {
 	// ### check current user-agent
 	console.log('>> runTest()');
 
-
 	console.log('>> ready to check userAgent');
-	document.getElementById("label_userAgent").innerHTML = navigator.userAgent;
+    if(document.getElementById("label_userAgent") != undefined) {
+        document.getElementById("label_userAgent").innerHTML = navigator.userAgent;
+    }
 
 	console.log('#1: check online or not');
 	if(navigator.onLine === true) {
@@ -232,10 +233,16 @@ function runTest() {
 
 function checkExtFrameExist() {
 
-	if(document.getElementById("extensionFrame") == undefined) {
-		document.getElementById("extFrameStatus").innerHTML = "Not Found";
+	if((document.getElementById("extensionFrame") == undefined)) {
+
+        if(document.getElementById("extFrameStatus")!= undefined) {
+            document.getElementById("extFrameStatus").innerHTML = "Not Found";
+        }
+
 	} else {
-		document.getElementById("extFrameStatus").innerHTML = "OK";
+        if(document.getElementById("extFrameStatus")!= undefined) {
+            document.getElementById("extFrameStatus").innerHTML = "OK";
+        }
 	}
 
     var head = $("head script");
@@ -250,16 +257,20 @@ function checkExtFrameExist() {
         }
     }
 
-    if(hit === true) {
-        document.getElementById("contentScriptStatus").innerHTML = "OK";
-    } else {
-        document.getElementById("contentScriptStatus").innerHTML = "Not found";
+    if(document.getElementById("contentScriptStatus")!= undefined) {
+        if(hit === true) {
+            document.getElementById("contentScriptStatus").innerHTML = "OK";
+        } else {
+            document.getElementById("contentScriptStatus").innerHTML = "Not found";
+        }
     }
 }
 
 $("document").ready(function() {
 
-	setTimeout(runTest(), 2000);
+	setTimeout(function(){
+        runTest();
+    }, 2000);
 });
 
 
