@@ -73,7 +73,7 @@ function bindInputFields() {
                     pwdGenerator.width = inputFieldPos.width;
                     pwdGenerator.src = 'testBindInputInner.html';
                     pwdGenerator.setAttribute("frameborder",'0');
-                    pwdGenerator.setAttribute('style', 'z-index: 255;position: absolute; top:' + inputFieldPos.bottom + 'px;left:' + inputFieldPos.left+ 'px;');
+                    pwdGenerator.setAttribute('style', 'z-index: 255;box-shadow: 0 5px 10px; position: absolute; top:' + inputFieldPos.bottom + 'px;left:' + inputFieldPos.left+ 'px;');
                     document.body.appendChild(pwdGenerator);
                 } else {
                     var isVisible = $('#pwdGenerator').is(":visible");
@@ -117,7 +117,7 @@ function bindInputFields2() {
         pwdGenerator.height = "115px";
         pwdGenerator.scrolling="no";
         pwdGenerator.src = 'testBindInputInner.html';
-        pwdGenerator.setAttribute('style', 'z-index: 255;position: absolute; display:none; border: 1px solid rgba(0,0,0,.3); box-shadow: 0.5px 10px rgba(0,0,0,.3)');
+        pwdGenerator.setAttribute('style', 'z-index: 255;position: absolute; display:none; border: 1px solid rgba(0,0,0,.3); box-shadow: 0 5px 10px rgba(0,0,0,.3)');
         document.body.appendChild(pwdGenerator);
     }
 
