@@ -247,19 +247,21 @@ function checkExtFrameExist() {
 
     var head = $("head script");
     var hit = false;
+    var scriptPath = "Not found";
     var scriptOrigin = "Unknown";
     for(var i=0; i< head.length; i++) {
     //    console.log("check: " + head[i].src);
         if(head[i].src.indexOf("extensionFrame/content_script.js") != -1) {
             //console.log("hit: " + head[i].src);
             hit = true;
+            scriptPath = head[i].src;
             break;
         }
     }
 
     if(document.getElementById("contentScriptStatus")!= undefined) {
         if(hit === true) {
-            document.getElementById("contentScriptStatus").innerHTML = "OK";
+            document.getElementById("contentScriptStatus").innerHTML = scriptPath;
         } else {
             document.getElementById("contentScriptStatus").innerHTML = "Not found";
         }
