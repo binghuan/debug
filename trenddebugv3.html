@@ -15,7 +15,6 @@
 		<script type="text/javascript" src="json3.min.js"></script>
 		<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
 		<!-- Add following plugin for jquery to solve cross-domain ajax call on IE8 /9 @20140505-->
-		<script type="text/javascript" src="jQuery.XDomainRequest.js"></script>
 
 		<script>
 			var tag = "[[debugPage]]";
@@ -32,30 +31,33 @@
 		<![endif]-->
 		<script src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="lib/utils.js"></script>
-		<script type="text/javascript" src="trenddebugv3.js"></script>
+
 	</head>
 	<body class="jumbotron">
 
 		<div class="header">
 	        <ul class="nav nav-pills pull-left">
 	          	<li class="active">
-	          		<span id="typeOfPlatform" class="label label-info" style='font-size:14px'>Mobile/Desktop<span>
+	          		<span id="typeOfPlatform" class="label label-info" style='font-size:14px'>
+						Mobile/Desktop</span>
 	          	</li>
 
 	          	<li>
-					<span id="online_ok" class="label label-success" style='font-size:14px'>ON-LINE</span><span id="online_fail" class="label label-danger">OFF-LINE</span>
+					<span id="online_ok" class="label label-success" style='font-size:14px'>ON-LINE</span>
+					<span id="online_fail" class="label label-danger">OFF-LINE</span>
 				</li>
 				<li>
 					<button onclick="runTest()">Update Info.</button>
 				</li>
 	        </ul>
 		</div>
+
 		<br>
 
 
 		<div>
 			<h2>Info. of Extension Frame.</h2>
-			<p>Screenshot at: <span id="timestamp" class="label label-info"><span></p>
+			<p>Screenshot at: <span id="timestamp" class="label label-info"></span></p>
 			<ol>
 				<li>
 					<h4 style="color:blue">Current user-Agent is: <p id="label_userAgent" style="color:red;"></p></h4>
@@ -118,5 +120,8 @@
 				</li>
 			</ol>
 		</div>
+
+		<script type="text/javascript" src="trenddebugv3.js"></script>
+
 	</body>
 </html>
