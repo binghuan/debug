@@ -42,8 +42,8 @@ function messageHandler(event) {
     }
 
     eventOrigin = event.origin.toString();
-    document.getElementById('cmdlink').herf = '' + eventOrigin + '/extensionFrame/debug/cmd.html';
-    document.getElementById('loggerlink').herf = '' + eventOrigin + '/extensionFrame/debug/loggerHelper.html';
+    document.getElementById('cmdlink').href = '' + eventOrigin + '/extensionFrame/debug/cmd.html';
+    document.getElementById('loggerlink').href = '' + eventOrigin + '/extensionFrame/debug/loggerHelper.html';
 
 
     $("#scriptOrigin").text(event.origin.toString());
