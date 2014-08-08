@@ -29,6 +29,8 @@ var ACTION_OF_HAND_SHAKE = {
             NAVIGATE_URL: 210004
         };
 
+var eventOrigin;
+
 function messageHandler(event) {
 
 
@@ -38,6 +40,11 @@ function messageHandler(event) {
 		event.origin !== "https://tmdphststest.directpass.com") {
         return;
     }
+
+    eventOrigin = event.origin.toString();
+    document.getElementById('cmdlink').herf = '' + eventOrigin + '/extensionFrame/debug/cmd.html';
+    document.getElementById('loggerlink').herf = '' + eventOrigin + '/extensionFrame/debug/loggerHelper.html';
+
 
     $("#scriptOrigin").text(event.origin.toString());
 
