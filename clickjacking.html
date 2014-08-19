@@ -1,0 +1,111 @@
+<html>
+	<head>
+		<title>Trusted web page</title>
+
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    	<script src="jquery-1.11.1.min.js"></script>
+	    <!-- Bootstrap -->
+
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <script src="js/bootstrap.min.js"></script>
+
+
+	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+
+
+    	<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+
+			.button
+			{
+				padding:5px;
+				background:#6699CC;
+				left:275px;
+				width:120px;
+				border: 1px solid #336699;
+			}
+
+			#content {
+				width: 500px;
+				height: 500px;
+				margin-top: 150px ;
+				margin-left: 500px;
+			}
+
+
+			#clickjacking
+			{
+ 				position: absolute;
+				left: 172px;
+				top: 60px;
+				filter: alpha(opacity=0);
+				opacity:0.0
+			}
+
+			body {
+				background:#ffffff;
+			}
+
+
+		</style>
+
+		<script>
+			var tag = "page1";
+
+			$(document).ready(function() {
+				console.log(tag, "document is ready.");
+				$("body").on("click", function(){
+					//console.log(tag, "you click body.");
+				});
+
+				$("#btnShowTargetFrame").click(function() {
+					if($("#clickjacking").css("opacity") === "0") {
+						$("#clickjacking").css("opacity", "1");
+					} else {
+						$("#clickjacking").css("opacity", "0");
+					}
+				});
+			});
+
+		</script>
+
+	</head>
+	<body style="background-color:yellow">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <a class="navbar-brand" >Malicious Web Page</a>
+			    </div>
+
+			    <button id="btnShowTargetFrame" class="btn btn-primary">Toggle Target iframe</button>
+
+			</div><!-- /.container-fluid -->
+		</nav>
+		<div id="content">
+			<h1>Malicious Web Page</h1>
+			<form action="http://www.owasp.com">
+				<input type="submit" class="button" value="Click and go!">
+			</form>
+		</div>
+
+		<iframe id="clickjacking"  style="background: #FFFFFF;" src="clickjacking2.html" width="500" height="500" scrolling="no" frameborder="none"></iframe>
+
+
+	</body>
+</html>
+
