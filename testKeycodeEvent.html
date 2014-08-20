@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>keyCode example</title>
+
+	<script type="text/javascript">
+
+	function showKeyCode(e) {
+		alert( "keyCode for the key pressed: " + e.keyCode + "\n" );
+		//console.log("keyCode for the key pressed: " + e.keyCode + "\n" );
+	}
+
+	</script>
+</head>
+
+<body onkeydown="showKeyCode(event);">
+
+	<p>Press any key.</p>
+
+	<iframe width="500px" height="500px" src="testBindInput.html"></iframe>
+</body>
+</html>

@@ -54,6 +54,14 @@ the usage of this debuging page.
             <p>demostration of clickjacking</p>
         </div>
     </li>
+
+    <li>
+        <div>
+            <h4>Page: <a href="http://binghuan.github.io/DebugPage/testKeycodeEvent.html">testKeycodeEvent.html</a></h4>
+            <p>demostration of hooking keycode event</p>
+        </div>
+    </li>
+
 </ul>
 
 
