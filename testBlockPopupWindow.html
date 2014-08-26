@@ -8,7 +8,7 @@
 	    <meta name="author" content="BH_Lin">
 	    <link rel="shortcut icon" href="">
 
-	    <title>Try Bind Input</title>
+	    <title>Test Block Popup Window</title>
 
 	    <!-- Bootstrap core CSS -->
 	    <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -30,6 +30,12 @@
 				window.open("http://studiobinghuan.blogspot.com/?view=flipcard", "_blank");
 			}
 
+			$(document).ready(function() {
+				$("#method3").on("click", function() {
+					openWindowWithURL();
+				});
+			});
+
 		</script>
 
 		<style>
@@ -48,7 +54,10 @@
 		<a id="method1" href="http://studiobinghuan.blogspot.com/?view=flipcard" target="_blank">Open link with property target="_blank"</a>
 		<br>
 		<br><br>
-		<button id="method2" onclick="openWindowWithURL()">Open link with JavaScript Code "window.open()"</button>
+		<button id="method2" onclick="openWindowWithURL()">onclick with JavaScript Code "window.open()"</button>
+		<br>
+		<br><br>
+		<button id="method3">Open link with JavaScript Code "window.open()"</button>
 		<br>
 
 	</body>
