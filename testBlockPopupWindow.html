@@ -35,7 +35,11 @@
 					openWindowWithURL();
 				});
 
-				openWindowWithURL();
+
+				$("#method4").on("click", function() {
+					setTimeout(openWindowWithURL, 2000);
+				});
+
 			});
 
 		</script>
@@ -54,13 +58,12 @@
 	<body >
 
 		<a id="method1" href="http://studiobinghuan.blogspot.com/?view=flipcard" target="_blank">Open link with property target="_blank"</a>
-		<br>
-		<br><br>
+		<br><br><br>
 		<button id="method2" onclick="openWindowWithURL()">onclick with JavaScript Code "window.open()"</button>
-		<br>
-		<br><br>
+		<br><br><br>
 		<button id="method3">Open link with JavaScript Code "window.open()"</button>
-		<br>
-
+		<br><br><br>
+		<button id="method4">window.open(target) with timer</button>
+		<br><br><br>
 	</body>
 </html>
