@@ -40,6 +40,10 @@
 					setTimeout(openWindowWithURL, 2000);
 				});
 
+				$("#method5").on("click", function() {
+					window.open("http://studiobinghuan.blogspot.com/?view=flipcard", "_self");
+				});
+
 			});
 
 		</script>
@@ -59,20 +63,24 @@
 
 		<ul>
 			<li>
-				<a id="method0" href="http://studiobinghuan.blogspot.com/?view=flipcard" target="_self">Open link with property target="_self"</a>
+				<a id="method0" href="http://studiobinghuan.blogspot.com/?view=flipcard" target="_self">Link with property target="_self"</a>
 			</li>
 			<li>
-				<a id="method1" href="http://studiobinghuan.blogspot.com/?view=flipcard" target="_blank">Open link with property target="_blank"</a>
+				<a id="method1" href="http://studiobinghuan.blogspot.com/?view=flipcard" target="_blank">Link with property target="_blank"</a>
 			</li>
 			<li>
-				<button id="method2" onclick="openWindowWithURL()">onclick with JavaScript Code "window.open()"</button>
+				<button id="method2" onclick="openWindowWithURL()">onclick with "window.open() _blank"</button>
 			</li>
 			<li>
-				<button id="method3">Open link with JavaScript Code "window.open()"</button>
+				<button id="method3">window.open() _blank</button>
 			</li>
 			<li>
-				<button id="method4">window.open(target) with timer</button>
+				<button id="method4">window.open(target) _blank with timer</button>
 			</li>
+			<li>
+				<button id="method5">window.open() _self</button>
+			</li>
+
 		</ul>
 	</body>
 </html>
