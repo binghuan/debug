@@ -62,7 +62,9 @@ function bindInputFields() {
     $(pwdField).click(function(e) {
         console.log(this.getBoundingClientRect());
         var inputFieldPos = this.getBoundingClientRect();
-        if(isInTargetArea({x: e.offsetX, y: e.offsetY}, inputFieldPos) === true) {
+        var offX  = (e.offsetX || e.clientX - $(e.target).offset().left);
+        var offY  = (e.offsetY || e.clientY - $(e.target).offset().top);
+        if(isInTargetArea({x: offX, y: offY}, inputFieldPos) === true) {
                 console.log('hit in area !!');
 
                 if(document.getElementById('pwdGenerator') == undefined) {
@@ -148,7 +150,9 @@ function bindInputFields2() {
     $(pwdField).on('mousemove', function(e) {
         //console.log(this.getBoundingClientRect());
         var inputFieldPos = this.getBoundingClientRect();
-        if(isInTargetArea({x: e.offsetX, y: e.offsetY}, inputFieldPos) === true) {
+        var offX  = (e.offsetX || e.clientX - $(e.target).offset().left);
+        var offY  = (e.offsetY || e.clientY - $(e.target).offset().top);
+        if(isInTargetArea({x: offX, y: offY}, inputFieldPos) === true) {
             $(this).css('cursor', 'pointer');
         } else {
             $(this).css('cursor', '');
