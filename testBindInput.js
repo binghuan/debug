@@ -52,7 +52,10 @@ function bindInputFields() {
     $(pwdField).on('mousemove', function(e) {
         console.log(this.getBoundingClientRect());
         var inputFieldPos = this.getBoundingClientRect();
-        if(isInTargetArea({x: e.offsetX, y: e.offsetY}, inputFieldPos) === true) {
+
+        var offX  = (e.offsetX || e.clientX - $(e.target).offset().left);
+        var offY  = (e.offsetY || e.clientY - $(e.target).offset().top);
+        if(isInTargetArea({x: offX, y: offY}, inputFieldPos) === true) {
             $(this).css('cursor', 'pointer');
         } else {
             $(this).css('cursor', '');
@@ -166,7 +169,9 @@ function bindInputFields2() {
             .css("left", inputFieldPos.left+ 'px')
             .css('width', inputFieldPos.width + "px");
 
-        if(isInTargetArea({x: e.offsetX, y: e.offsetY}, inputFieldPos) === true) {
+        var offX  = (e.offsetX || e.clientX - $(e.target).offset().left);
+        var offY  = (e.offsetY || e.clientY - $(e.target).offset().top);
+        if(isInTargetArea({x: offX, y: offY}, inputFieldPos) === true) {
                 console.log('hit in area !!');
 
                 var generatedPwd = generatePassword();
