@@ -62,6 +62,14 @@ the usage of this debuging page.
         </div>
     </li>
 
+    <li>
+        <div>
+            <h4>Page: <a href="http://binghuan.github.io/debug/uiplatform.html">uiplatform.html</a></h4>
+            <p>A dragable and resizeable iframe box to let you load ui into iframe.</p>
+        </div>
+    </li>
+
+
 </ul>
 
 

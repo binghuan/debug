@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery UI Draggable - Default functionality</title>
+		<link rel="stylesheet" href="jquery-ui.min.css">
+		<script src="jquery-1.11.1.min.js"></script>
+		<script src="jquery-ui.min.js"></script>
+		<style>
+
+		  #uiplatform h3 { text-align: center; margin: 0; }
+
+	  	</style>
+
+		<script>
+			$(function() {
+
+				$( "#uiplatform" ).draggable();
+				$( "#uiplatform" ).resizable();
+
+				$('#target_url').keypress(function(e) {
+				    if(e.which == 13) { // Checks for the enter key
+				        console.log("!");
+						loadUrlIntoIframe();
+				    }
+				});
+
+				$( "input[type=submit], a, button" ).button();
+			});
+
+			function loadUrlIntoIframe() {
+				var targetUrl = $("#target_url").val();
+
+				if(targetUrl.indexOf("http://") === -1 ||
+					targetUrl.indexOf("https://") === -1) {
+					targetUrl = "http://" + targetUrl;
+				}
+
+				console.log("ready to load: " + targetUrl);
+
+				$("#frame").attr("src", targetUrl);
+			}
+		</script>
+
+	</head>
+	<body>
+		<p style="margin-bottom:0px">Enter a website address here: </p>
+		<input id="target_url" type="url" style="width:480px"> <button onclick="loadUrlIntoIframe()">Load</button>
+		<div id="uiplatform" class="ui-widget-content" style="height:60px;width:200px">
+			<h3 class="ui-widget-header">UI Frame</h3>
+			<iframe id="frame" style="height:100%;width:100%;"></iframe>
+		</div>
+
+	</body>
+</html>
