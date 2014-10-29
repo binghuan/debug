@@ -75,6 +75,8 @@
 				$("#frame").attr("src", targetUrl);
 
 				datakeeper.put("LAST_URL", targetUrl);
+
+				$("#timestamp").text(new Date());
 			}
 		</script>
 
@@ -87,6 +89,7 @@
 			<h4 style="display:inline">Size of UI Frame:</h4>
 			<p style="display:inline"> widht: <input type="number" id="frame_width" style="color:red;"></span> px</p>
 			<p style="display:inline"> height: <input type="number" id="frame_height" style="color:red;"></span> px</p>
+			<p>Last updated: <span id="timestamp">--/--/-- --:--:--</span></p>
 		</div>
 		<div id="uiplatform" class="ui-widget-content" style="height:60px;width:200px;">
 			<h3 class="ui-widget-header">UI Frame</h3>
