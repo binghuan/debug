@@ -40,6 +40,9 @@
 
 				var lastUrl = datakeeper.get("LAST_URL");
 				$("#target_url").val(lastUrl);
+				if(lastUrl != null && lastUrl !== "") {
+					loadUrlIntoIframe();
+				}
 
 
 				$("#uiplatform").resize(function() {
