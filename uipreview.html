@@ -23,6 +23,21 @@
 				}
 			}
 
+			function getParameterByName(name) {
+			    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+			        results = regex.exec(location.search);
+			    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+			}
+
+			function restoreData() {
+				var lastUrl = datakeeper.get("LAST_URL");
+				$("#target_url").val(lastUrl);
+				if(lastUrl != null && lastUrl !== "") {
+					loadUrlIntoIframe();
+				}
+			}
+
 			$(function() {
 
 				$( "#uiplatform" ).draggable();
@@ -36,14 +51,6 @@
 				});
 
 				$( "input[type=submit], a, button" ).button();
-
-
-				var lastUrl = datakeeper.get("LAST_URL");
-				$("#target_url").val(lastUrl);
-				if(lastUrl != null && lastUrl !== "") {
-					loadUrlIntoIframe();
-				}
-
 
 				$("#uiplatform").resize(function() {
 					$("#frame_height").val($(this).height());
@@ -60,6 +67,39 @@
 				$("#frame_width").on("input", function(e) {
 					$("#uiplatform").width($( "#frame_width" ).val());
 				});
+
+				$("#button_share").on("click", function(e) {
+					generateShareLink();
+				});
+
+
+				if(getParameterByName("framesrc") != null &&
+					getParameterByName("framesrc") !== "") {
+
+					var configure = {};
+					configure.framesrc = getParameterByName("framesrc");
+					configure.frameheight = getParameterByName("frameheight");
+					configure.framewidth = getParameterByName("framewidth");
+					configure.frametop = getParameterByName("frametop");
+					configure.frameleft = getParameterByName("frameleft");
+
+					$("#frame_height").val(configure.frameheight);
+					$("#frame_width").val(configure.framewidth);
+					$("#uiplatform").height(configure.frameheight);
+					$("#uiplatform").width(configure.framewidth);
+
+					$("#uiplatform").css("top", configure.frametop + 'px');
+					$("#uiplatform").css("left", configure.frameleft + 'px');
+
+					$("#uiplatform").css("position", "absolute");
+
+					$("#target_url").val(configure.framesrc);
+
+					loadUrlIntoIframe();
+
+				} else {
+					restoreData();
+				}
 			});
 
 			function loadUrlIntoIframe() {
@@ -78,11 +118,30 @@
 
 				$("#timestamp").text(new Date());
 			}
+
+			function generateShareLink() {
+				var position = $("#uiplatform").position();
+				var configure = {
+					top: position.top,
+					left: position.left,
+					frameheight: $("#uiplatform").height(),
+					framewidth: $("#uiplatform").width(),
+					framesrc: encodeURIComponent($("#frame").attr("src"))
+				};
+				var urlPath = location.origin + location.pathname + '?frametop=' + configure.top +
+							'&frameleft=' + configure.left + '&framesrc=' + configure.framesrc +
+							'&frameheight=' + configure.frameheight + '&framewidth=' + configure.framewidth;
+
+				alert(urlPath);
+			}
 		</script>
 
 	</head>
 	<body style="background-image: url('images/grid.png');">
-		<h3>Welcome to BH_Lin's UI platform</h3>
+
+		<div>
+			<h3 style="display:inline;padding-right:20px">Welcome to BH_Lin's UI platform</h3><button id="button_share">Share UI Preview</button>
+		</div>
 		<p style="margin-bottom:0px">Enter a website address here: </p>
 		<input id="target_url" type="url" style="width:480px"> <button onclick="loadUrlIntoIframe()">Load</button>
 		<div style="padding-bottom:10px">
