@@ -13,6 +13,16 @@
 	  	</style>
 
 		<script>
+
+			var datakeeper = {
+				put: function(key, value) {
+					localStorage[key] = value;
+				},
+				get: function(key) {
+					return localStorage[key];
+				}
+			}
+
 			$(function() {
 
 				$( "#uiplatform" ).draggable();
@@ -26,12 +36,16 @@
 				});
 
 				$( "input[type=submit], a, button" ).button();
+
+
+				var lastUrl = datakeeper.get("LAST_URL");
+				$("#target_url").val(lastUrl);
 			});
 
 			function loadUrlIntoIframe() {
 				var targetUrl = $("#target_url").val();
 
-				if(targetUrl.indexOf("http://") === -1 ||
+				if(targetUrl.indexOf("http://") === -1 &&
 					targetUrl.indexOf("https://") === -1) {
 					targetUrl = "http://" + targetUrl;
 				}
@@ -39,6 +53,8 @@
 				console.log("ready to load: " + targetUrl);
 
 				$("#frame").attr("src", targetUrl);
+
+				datakeeper.put("LAST_URL", targetUrl);
 			}
 		</script>
 
