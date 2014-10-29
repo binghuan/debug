@@ -40,6 +40,15 @@
 
 				var lastUrl = datakeeper.get("LAST_URL");
 				$("#target_url").val(lastUrl);
+
+
+				$("#uiplatform").resize(function() {
+					$("#frame_height").text($(this).height() + " px");
+					$("#frame_width").text($(this).width() + "px");
+				});
+
+				$("#frame_height").text($("#uiplatform").height() + ' px');
+				$("#frame_width").text($("#uiplatform").width() + ' px');
 			});
 
 			function loadUrlIntoIframe() {
@@ -63,6 +72,11 @@
 		<h3>Welcome to BH_Lin's UI platform</h3>
 		<p style="margin-bottom:0px">Enter a website address here: </p>
 		<input id="target_url" type="url" style="width:480px"> <button onclick="loadUrlIntoIframe()">Load</button>
+		<div>
+			<h4 style="display:inline">Size of UI Frame:</h4>
+			<p style="display:inline"> height: <span id="frame_height" style="color:red;"></span></p>
+			<p style="display:inline"> widht: <span id="frame_width" style="color:red;"></span></p>
+		</div>
 		<div id="uiplatform" class="ui-widget-content" style="height:60px;width:200px">
 			<h3 class="ui-widget-header">UI Frame</h3>
 			<iframe id="frame" style="height:100%;width:100%;"></iframe>
