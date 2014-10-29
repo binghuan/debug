@@ -46,12 +46,20 @@
 
 
 				$("#uiplatform").resize(function() {
-					$("#frame_height").text($(this).height() + " px");
-					$("#frame_width").text($(this).width() + "px");
+					$("#frame_height").val($(this).height());
+					$("#frame_width").val($(this).width());
 				});
 
-				$("#frame_height").text($("#uiplatform").height() + ' px');
-				$("#frame_width").text($("#uiplatform").width() + ' px');
+				$("#frame_height").val($("#uiplatform").height());
+				$("#frame_width").val($("#uiplatform").width());
+
+				$("#frame_height").on("input", function(e) {
+					$("#uiplatform").height($( "#frame_height" ).val());
+				});
+
+				$("#frame_width").on("input", function(e) {
+					$("#uiplatform").width($( "#frame_width" ).val());
+				});
 			});
 
 			function loadUrlIntoIframe() {
@@ -75,10 +83,10 @@
 		<h3>Welcome to BH_Lin's UI platform</h3>
 		<p style="margin-bottom:0px">Enter a website address here: </p>
 		<input id="target_url" type="url" style="width:480px"> <button onclick="loadUrlIntoIframe()">Load</button>
-		<div>
+		<div style="padding-bottom:10px">
 			<h4 style="display:inline">Size of UI Frame:</h4>
-			<p style="display:inline"> height: <span id="frame_height" style="color:red;"></span></p>
-			<p style="display:inline"> widht: <span id="frame_width" style="color:red;"></span></p>
+			<p style="display:inline"> widht: <input type="number" id="frame_width" style="color:red;"></span> px</p>
+			<p style="display:inline"> height: <input type="number" id="frame_height" style="color:red;"></span> px</p>
 		</div>
 		<div id="uiplatform" class="ui-widget-content" style="height:60px;width:200px;">
 			<h3 class="ui-widget-header">UI Frame</h3>
