@@ -6,10 +6,18 @@
 		<link rel="stylesheet" href="jquery-ui.min.css">
 		<script src="jquery-1.11.1.min.js"></script>
 		<script src="jquery-ui.min.js"></script>
+		<script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 		<style>
 
-		  #uiplatform h3 { text-align: center; margin: 0; }
+			#uiplatform h3 {
+				text-align: center; margin: 0;
+			}
 
+		    .ace_editor {
+		        border: 1px solid lightgray;
+		        height: 200px;
+		        width: 580px;
+		    }
 	  	</style>
 
 		<script>
@@ -35,6 +43,12 @@
 				$("#target_url").val(lastUrl);
 				if(lastUrl != null && lastUrl !== "") {
 					loadUrlIntoIframe();
+				}
+				if(datakeeper.get("JAVASCRIPT_CODE") != null &&
+					datakeeper.get("JAVASCRIPT_CODE") !== "") {
+
+					var sourcecode = decodeURIComponent(datakeeper.get("JAVASCRIPT_CODE"));
+					editor.setValue(sourcecode);
 				}
 			}
 
@@ -73,6 +87,18 @@
 				});
 
 
+				editor = ace.edit("editor");
+		    	editor.setTheme("ace/theme/monokai");
+		    	editor.getSession().setMode("ace/mode/javascript");
+
+				$('#frame').bind('load',function(event){
+                    if(!this.contentWindow){
+                        return;
+                    }
+
+                    runJavascriptCode()
+                });
+
 				if(getParameterByName("framesrc") != null &&
 					getParameterByName("framesrc") !== "") {
 
@@ -82,6 +108,8 @@
 					configure.framewidth = getParameterByName("framewidth");
 					configure.frametop = getParameterByName("frametop");
 					configure.frameleft = getParameterByName("frameleft");
+					configure.javascript = getParameterByName("javascript");
+					editor.setValue(decodeURIComponent(configure.javascript));
 
 					$("#frame_height").val(configure.frameheight);
 					$("#frame_width").val(configure.framewidth);
@@ -100,7 +128,11 @@
 				} else {
 					restoreData();
 				}
+
+
 			});
+
+			var editor = null;
 
 			function loadUrlIntoIframe() {
 				var targetUrl = $("#target_url").val();
@@ -126,34 +158,49 @@
 					left: position.left,
 					frameheight: $("#uiplatform").height(),
 					framewidth: $("#uiplatform").width(),
-					framesrc: encodeURIComponent($("#frame").attr("src"))
+					framesrc: encodeURIComponent($("#frame").attr("src")),
+					javascript: encodeURIComponent(editor.getValue())
 				};
 				var urlPath = location.origin + location.pathname + '?frametop=' + configure.top +
 							'&frameleft=' + configure.left + '&framesrc=' + configure.framesrc +
-							'&frameheight=' + configure.frameheight + '&framewidth=' + configure.framewidth;
+							'&frameheight=' + configure.frameheight + '&framewidth=' + configure.framewidth +
+							'&javascript=' + configure.javascript;
 
 				alert(urlPath);
 			}
+
+			function runJavascriptCode() {
+				console.log("+++ runJavascriptCode +++");
+
+				var sourcecode = encodeURIComponent(editor.getValue());
+				datakeeper.put("JAVASCRIPT_CODE", sourcecode);
+
+				eval(editor.getValue());
+			}
+
 		</script>
 
 	</head>
-	<body style="background-image: url('images/grid.png');">
-
+		<body style="background-image: url('images/grid.png');">
 		<div>
 			<h3 style="display:inline;padding-right:20px">Welcome to BH_Lin's UI platform</h3><button id="button_share">Share UI Preview</button>
 		</div>
 		<p style="margin-bottom:0px">Enter a website address here: </p>
 		<input id="target_url" type="url" style="width:480px"> <button onclick="loadUrlIntoIframe()">Load</button>
-		<div style="padding-bottom:10px">
+		<div>
 			<h4 style="display:inline">Size of UI Frame:</h4>
 			<p style="display:inline"> widht: <input type="number" id="frame_width" style="color:red;"></span> px</p>
 			<p style="display:inline"> height: <input type="number" id="frame_height" style="color:red;"></span> px</p>
 			<p>Last updated: <span id="timestamp">--/--/-- --:--:--</span></p>
+
 		</div>
-		<div id="uiplatform" class="ui-widget-content" style="height:60px;width:200px;">
-			<h3 class="ui-widget-header">UI Frame</h3>
+		<h3 style="display:inline">###Enter some JavaScript codes for test</h3> -
+		<button onclick="runJavascriptCode()">Run JavaScript</button>
+		<pre id="editor">console.log("show me the code");</pre>
+
+		<div id="uiplatform" class="ui-widget-content" style="height:60px;width:200px;top:80px;left:600px;position:absolute">
+			<h3 class="ui-widget-header">ID: frame</h3>
 			<iframe id="frame" style="height:100%;width:100%;"></iframe>
 		</div>
-
 	</body>
 </html>
