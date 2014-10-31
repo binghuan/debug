@@ -50,7 +50,52 @@
 					var sourcecode = decodeURIComponent(datakeeper.get("JAVASCRIPT_CODE"));
 					editor.setValue(sourcecode);
 				}
+
+				var uiPositionLeft = datakeeper.get("UI_POSITION_LEFT");
+				var uiPositionTop = datakeeper.get("UI_POSITION_TOP");
+				if(uiPositionLeft != null && uiPositionLeft !== "") {
+					$("#uiplatform").css("left", uiPositionLeft + 'px');
+					$("#uiplatform").css("top", uiPositionTop + 'px');
+				}
+
+				var uiFrameWidth = datakeeper.get("UI_FRAME_WIDTH");
+				var uiFrameHeight = datakeeper.get("UI_FRAME_HEIGHT");
+				if(uiFrameWidth != null && uiFrameWidth !== "") {
+					$("#frame_width").val(uiFrameWidth);
+					$("#frame_height").val(uiFrameHeight);
+
+					$("#uiplatform").width($("#frame_width" ).val());
+					$("#uiplatform").height($("#frame_height" ).val());
+				}
 			}
+
+			jQuery.fn.onPositionChanged = function (trigger, millis) {
+			    if (millis == null) millis = 100;
+			    var o = $(this[0]); // our jquery object
+			    if (o.length < 1) return o;
+
+			    var lastPos = null;
+			    var lastOff = null;
+			    setInterval(function () {
+			        if (o == null || o.length < 1) return o; // abort if element is non existend eny more
+			        if (lastPos == null) lastPos = o.position();
+			        if (lastOff == null) lastOff = o.offset();
+			        var newPos = o.position();
+			        var newOff = o.offset();
+			        if (lastPos.top != newPos.top || lastPos.left != newPos.left) {
+			            $(this).trigger('onPositionChanged', { lastPos: lastPos, newPos: newPos });
+			            if (typeof (trigger) == "function") trigger(lastPos, newPos);
+			            lastPos = o.position();
+			        }
+			        if (lastOff.top != newOff.top || lastOff.left != newOff.left) {
+			            $(this).trigger('onOffsetChanged', { lastOff: lastOff, newOff: newOff});
+			            if (typeof (trigger) == "function") trigger(lastOff, newOff);
+			            lastOff= o.offset();
+			        }
+			    }, millis);
+
+			    return o;
+			};
 
 			$(function() {
 
@@ -71,21 +116,27 @@
 					$("#frame_width").val($(this).width());
 				});
 
+				$("#uiplatform").onPositionChanged(function(){
+					datakeeper.put("UI_POSITION_LEFT", $("#uiplatform").position().left);
+					datakeeper.put("UI_POSITION_TOP", $("#uiplatform").position().top);
+				});
+
 				$("#frame_height").val($("#uiplatform").height());
 				$("#frame_width").val($("#uiplatform").width());
 
 				$("#frame_height").on("input", function(e) {
-					$("#uiplatform").height($( "#frame_height" ).val());
+					$("#uiplatform").height($("#frame_height" ).val());
+					datakeeper.put("UI_FRAME_HEIGHT", $("#frame_height" ).val());
 				});
 
 				$("#frame_width").on("input", function(e) {
-					$("#uiplatform").width($( "#frame_width" ).val());
+					$("#uiplatform").width($("#frame_width").val());
+					datakeeper.put("UI_FRAME_WIDTH", $("#frame_width" ).val());
 				});
 
 				$("#button_share").on("click", function(e) {
 					generateShareLink();
 				});
-
 
 				editor = ace.edit("editor");
 		    	editor.setTheme("ace/theme/monokai");
