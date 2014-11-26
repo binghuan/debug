@@ -24,7 +24,7 @@
 
 			function loadingTargetUrlIntoIframe() {
 				console.log("ready to load url: " + urlAddress.value);
-				if( (urlAddress.value.indexOf("http://") !== 0) ||
+				if( (urlAddress.value.indexOf("http://") !== 0) &&
 					(urlAddress.value.indexOf("https://") !== 0)) {
 
 					urlAddress.value = "http://" + urlAddress.value;
