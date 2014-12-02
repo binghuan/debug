@@ -86,8 +86,19 @@ function storeLastConfig(config) {
 }
 
 function restoreLastConfig() {
-	$("#testLength").val(localStorage.TEST_LENGTH);
-	$("#testCount").val(localStorage.TEST_COUNT);
+
+	if(localStorage.TEST_LENGTH == null) {
+		$("#testLength").val("5000");
+	} else {
+		$("#testLength").val(localStorage.TEST_LENGTH);
+	}
+
+	if(localStorage.TEST_COUNT == null) {
+		$("#testCount").val(60);
+	} else {
+		$("#testCount").val(localStorage.TEST_COUNT);
+	}
+
 	var result = localStorage.ENCODE_BASE64;
 	if(result == null) {
 		result = 'false';
