@@ -36,13 +36,6 @@ the usage of this debuging page.
 
     <li>
         <div>
-            <h4>Page: <a href="http://binghuan.github.io/debug/selfcheck.html">selfcheck.html</a></h4>
-            <p>Checking basic items for functionality (DPV3)</p>
-        </div>
-    </li>
-
-    <li>
-        <div>
             <h4>Page: <a href="http://binghuan.github.io/debug/bookmarkMaker.html">bookmarkMaker.html</a></h4>
             <p>Generate bookmark link by your way</p>
         </div>
@@ -64,7 +57,7 @@ the usage of this debuging page.
 
     <li>
         <div>
-            <h4>Page: <a href="postMessageProfile.html">uipreview.html</a></h4>
+            <h4>Page: <a href="postMessageProfile.html">postMessageProfile.html</a></h4>
             <p>A testing page for auditing performance of message passing.</p>
         </div>
     </li>
