@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="base64.js"></script>
+
+  </head>
+  <body style="padding: 20px">
+    <h3>Input your string</h3><br>
+    <div class="form-group">
+    	<label class="sr-only" for="exampleInputEmail3">Store some words</label>
+    	<input style="width: 480px" type="text" class="form-control" id="inputText" placeholder="Give me the fucking string">
+  	</div>
+  	<button id="save" class='btn btn-primary'>Convert the String</button>
+
+	<!--
+	你好，在哪高就呀靚妹! \0.0/
+	-->
+
+	<br>
+
+	<div>
+		<p id="result">...</p>
+	</div>
+
+	<div class="form-group">
+    	<label for="inputEmail3" class="col-sm-2 control-label">Original String</label>
+    	<div class="col-sm-10">
+      		<p class="form-control" id="text1">
+    	</div>
+  	</div>
+
+	<div class="form-group">
+    	<label for="inputEmail3" class="col-sm-2 control-label">After encodeURIComponent</label>
+    	<div class="col-sm-10">
+      		<p class="form-control" id="text2">
+    	</div>
+  	</div>
+
+	<div class="form-group">
+    	<label for="inputEmail3" class="col-sm-2 control-label">btoa</label>
+    	<div class="col-sm-10">
+      		<p class="form-control" id="text3">
+    	</div>
+  	</div>
+
+	<div class="form-group">
+    	<label for="inputEmail3" class="col-sm-2 control-label">atob</label>
+    	<div class="col-sm-10">
+      		<p class="form-control" id="text4">
+    	</div>
+  	</div>
+
+  	<div class="form-group">
+    	<label for="inputEmail3" class="col-sm-2 control-label">decodeURIComponent</label>
+    	<div class="col-sm-10">
+      		<p class="form-control" id="text5">
+    	</div>
+  	</div>
+
+  </body>
+</html>

@@ -70,7 +70,12 @@ the usage of this debuging page.
         </div>
     </li>
 
-
+    <li>
+        <div>
+            <h4>Page: <a href="http://binghuan.github.io/debug/base64.html">base64.html</a></h4>
+            <p>A page to test function atob and btoa</p>
+        </div>
+    </li>
 </ul>
 
 
