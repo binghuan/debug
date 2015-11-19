@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>HTTP Live Streaming</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body role="document">
+    <div class="container theme-showcase" role="main">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Audio not 44.1k Link</div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <a href="http://qatest.visualon.com:8082/hls/Customers/Ericsson/HDMPEG4_HBO/index.m3u8" class="list-group-item">HDMPEG4_HBO</a>
+                    <a href="http://10.2.68.7:8082/hls/audio/48/index.m3u8" class="list-group-item">1080P_48khz</a>
+                    <a href="http://10.2.68.7:8082/hls/audio/32/index.m3u8" class="list-group-item">720P_32khz</a>
+                    <a href="http://10.2.68.7:8082/hls/audio/96/index.m3u8" class="list-group-item">720P_96khz</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Subtitle Link</div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <a href="http://10.2.68.7:8082/qa/subtitle.htm" class="list-group-item">FCC subtitle (includes AES-128)</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                New Steaming Test Case</div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <a href="http://10.2.68.7:8082/qa/tmp/NewStreaming_caseset.html" class="list-group-item">New Steaming HLS_links
+</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                From apple Test Case(no ready)</div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <a href="http://10.2.64.51/qadrift/testcases/_index.php" class="list-group-item">
+HLS_links
+</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Standard HLS</div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <a href="http://hls-iis.visualon.com:8082/hls/v10/gear/bipbop_16x9_variant_v10_2.m3u8" class="list-group-item">http link_webvttv10_spec testclip_Internal bipbop_16x9_variant.m3u8</a>
+                    <a href="https://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8" class="list-group-item">https link_webvttv10_spec testclip_External bipbop_16x9_variant.m3u8</a>
+                    <a href="https://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8" class="list-group-item">https link_webvttv8_spec testclip_External bipbop_4x3_variant.m3u8</a>
+                    <a href="http://10.2.68.7:8082/hls/v8/bipbop_16x9_variant.m3u8" class="list-group-item">v8bipbop_16x9_variant.m3u8</a>
+                    <a href="http://10.2.68.7:8082/hls/Customers/quickplay/45823/bipbop_16x9_multitrack_variant_3.m3u8" class="list-group-item">bipbop_16x9_3video_3audio groupinternal_multiaudiotrack_from_quickplay_modify</a>
+                    <a href="http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8" class="list-group-item">http_linkapple websiteExternalbipbopall.m3u8</a>
+                    <a href="http://10.2.68.7:8082/hls/multibitrate/apple/bipbopall.m3u8" class="list-group-item">bipbop 4x3apple/bipbopall.m3u8</a>
+                    <a href="http://10.2.68.7:8082/hls/v8/bipbop_16x9_variant1.m3u8" class="list-group-item">v8bipbop_16x9_variant1.m3u8eng and fra</a>
+                    <a href="http://10.2.68.7:8082/hls/multibitrate/troy5677_clear_10min/hls.m3u8" class="list-group-item">motoTroy 10 min/playlist.m3u8</a>
+                    <a href="http://10.2.68.7:8082/qa/tmp/v8.html" class="list-group-item">v8HLS_v8/test clip</a>
+                    <a href="http://10.2.68.7:8082/qa/tmp/v10.html" class="list-group-item">v10HLS webvttHLS_v10/test clip</a>
+                    <a href="http://10.2.68.26/casea.m3u8" class="list-group-item">302_dilemma_case_side_A_HLS(ios_native_cannotplay)</a>
+                    <a href="http://10.2.68.26/caseb.m3u8" class="list-group-item">302_dilemma_case_side_B_HLS(ios_native_canplay)</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Live link</div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <a href="http://linear.cdn.phodux.com/partner/content/pbs_hevc/index.m3u8" class="list-group-item">41593 hls HEVC live linkExternal EVAL Layer3TV</a>
+                    <a href="http://10.2.64.20/live/test.isml/manifest(format=m3u8-aapl)" class="list-group-item">internal hls live linktest.isml/manifest(format=m3u8-aapl)_External_20140429</a>
+                    <a href="http://modavpkg1.eng.cloud.bbc.co.uk/usp/live/bbc1hd/bbc1hd.isml/bbc1hd.m3u8" class="list-group-item">BBC1hd_cloud.bbc.co.uk_hls_liveexternal_20150819_fromAmazon126</a>
+                    <a href="http://dg-live.world.edge001.int1-dus.dg-m.de/testdrm/live.isml/live.m3u8" class="list-group-item">#48144 Verimatrix DRM Live linkserver:keyserver.dg-m.de :80</a>
+                    <a href="http://harmonic.e2e.purpledrm.com.edgesuite.net/Content/HLS/Live/Channel(Channel3)/index.m3u8" class="list-group-item">harmonic.e2e_Channel3_live_2hours_DVRwindowexternal_20150807</a>
+                    <a href="http://nscreenn-chtmod.cdn.hinet.net/live/Home/index.m3u8" class="list-group-item">hinet.net/live/Home/index.m3u8External_TaiWan Startpoint is 1, cannot seek</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                video only</div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <a href="http://10.2.68.7:8082/hls/videoonly/stream/videoonly.m3u8" class="list-group-item">Video only 10s_chunk videoonly.m3u8</a>
+                    <a href="http://10.2.68.7:8082/hls/videoonly/videoonly.m3u8" class="list-group-item">Video only videoonly.m3u8</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                OnlyAudio Link</div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <a href="http://10.2.68.7:8082/hls/multibitrate/troy5677_clear_10min/06/10C_OnlyAudio.m3u8" class="list-group-item">OnlyAudio06/10C_OnlyAudio.m3u8</a>
+                    <a href="http://10.2.68.7:8082/hls/customers/mdialog/feature1/audio.m3u8" class="list-group-item">OnlyAudiofeature1/audio.m3u8</a>
+                    <a href="http://10.2.68.7:8082/hls/customers/mdialog/feature2/audio.m3u8" class="list-group-item">OnlyAudiofeature2/audio.m3u8</a>
+                    <a href="http://10.2.68.7:8082/hls/customers/mdialog/new/pre_mid_post_roll_1/audio.m3u8" class="list-group-item">OnlyAudiopre_mid_post_roll_1/audio.m3u8</a>
+                    <a href="http://10.2.68.7:8082/hls/customers/mdialog/vod/audio.m3u8" class="list-group-item">OnlyAudio_id3vod/audio.m3u8</a>
+                    <a href="http://hlsedge1.ihrdev.com/wtam/playlist.m3u8" class="list-group-item">OnlyAudio_id3_34118_2013_12_09wtam/playlist.m3u8</a>
+                    <a href="http://10.2.68.7:8082/hls/multibitrate/troy5677_clear_10min/06/10C_OnlyAudio.m3u8" class="list-group-item">OnlyAudio_troy5677_10min_onlyAudio_clearinternal_20141229</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                AAC+MP3 audio</div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <a href="http://10.2.68.7:8082/hls/multiaudio/MultiAudioOption10/MultiAO3/BeginningWithBlackVideo&audio3Ismp3.m3u8" class="list-group-item">
+                            BeginningWithBlackVideo
+                            3 audio 5 video
+                            1st audio is default(3rd audio is_mp3
+                            multi_audio/video</a>
+                    <a href="http://10.2.68.7:8082/hls/Customers/moto/motorola/issue/26491/moto_hls/all.m3u8" class="list-group-item">
+                            moto
+                            ext MP3 audio
+                            1st audio is default(3rd audio is_mp3
+                            multi_audio/video</a>
+                    <a href="http://10.2.68.7:8082/hls/Customers/Discretix/MultiAudio/MP3/MyMovie_HLS_25FPS_Clr/MyMovie.m3u8" class="list-group-item">
+                            Discretix_mymovie
+                            4 audio_eng(AAC)_fir&amp;rus(MP3)
+                            ext _mp3
+
+                        </a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                only AAC audio</div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <a href="http://qatest.visualon.com:8082/hls/Customers/moto/motorola/issue/22508_dual_audio/dual/transport_clip_dual_clear.m3u8" class="list-group-item">one ts ,two audio (2013/1/26)multi_audio</a>
+                    <a href="http://10.2.68.7:8082/hls/multiaudio/MultiAudioOption10/1/multiaudio.m3u8" class="list-group-item">5 audio 1 video multi_audio</a>
+                    <a href="http://10.2.68.7:8082/hls/multiaudio/MultiAudioOption10/MultiAO1/multiaudio.m3u8" class="list-group-item">
+                            2 audio 1 video
+                            multi audio
+
+
+                        </a>
+                    <a href="http://10.2.68.7:8082/hls/multiaudio/MultiAudioOption10/MultiAO2/multiav.m3u8" class="list-group-item">
+                            2 audio 3 video
+                            multi_audio/video
+
+
+                        </a>
+                    <a href="http://10.2.68.7:8082/hls/multiaudio/MultiAudioOption10/MultiAO3/BeginningWithBlackVideo&2ndAudioAsDefault.m3u8" class="list-group-item">
+                            BeginningWithBlackVideo
+                            3 audio 5 video
+                            2nd audio is default
+                            multi_audio/video
+
+
+                        </a>
+                    <a href="http://10.2.68.7:8082/hls/multiaudio/MultiAudioOption10/MultiAO3/BeginningWithBlackVideo&audio3IsAAC.m3u8" class="list-group-item">
+                            BeginningWithBlackVideo
+                            3 audio 5 video
+                            1st audio is default(3rd audio is_aac
+                            multi_audio/video
+
+                        </a>
+                    <a href="http://10.2.68.7:8082/hls/multiaudio/MultiAudioOption10/MultiA04/3audiogroup.m3u8" class="list-group-item">
+                            3x3 group audio 4 video
+                            All default is 1st aduio
+                            multi_audio/video
+
+
+                        </a>
+                    <a href="http://10.2.68.7:8082/hls/multiaudio/MultiAudioOption10/MultiA04/3audiogroup2thAudioAsDefault.m3u8" class="list-group-item">3x3 group audio 4 videoAll default is 2nd aduiomulti_audio/video</a>
+                    <a href="http://10.2.68.7:8082/hls/multiaudio/MultiAudioOption10/MultiA04/3audiogroup3rdAudioAsDefault.m3u8" class="list-group-item">3x3 group audio 4 videoAll default is 3rd aduiomulti_audio/video</a>
+                    <a href="http://10.2.68.7:8082/hls/multiaudio/MultiAudioOption10/MultiA05/3audiogroup1stVideoIs720P.m3u8" class="list-group-item">3x3 group audio 4 videoV6(720P) 1st playlistAll default is 1st aduiomulti_audio/video</a>
+                    <a href="http://10.2.68.7:8082/hls/multiaudio/MultiAudioOption10/MultiA05/3audiogroup3rdAudioAsDefualt.m3u8" class="list-group-item">
+                            3x3 group audio 6 video
+                            V1 1st playlist
+                            All default is 3rd audio
+                            multi_audio/video
+
+
+                        </a>
+                    <a href="http://10.2.68.7:8082/hls/multiaudio/MultiAudioOption10/MultiA05/n23audiogroup_DeaultAudioNoURL.m3u8" class="list-group-item">
+                            3x3 group audio 6 video
+                            V1 1st playlist
+                            All default is 1st audio(1st audio no URL)
+
+
+                        </a>
+                    <a href="http://10.2.68.7:8082/hls/multiaudio/MultiAudioOption10/MultiA05/3audiogroup3rdAudioAsDefualt1stStreamIsAudio.m3u8" class="list-group-item">3x3 group audio 6 videoHEAAC pure audio 1st playlistll default is 3rd audiomulti_audio/video</a>
+                    <a href="http://10.2.68.7:8082/hls/multiaudio/MultiAudioOption10/MultiA05/3audiogroup.m3u8" class="list-group-item">
+                            3x3 group audio 6 video
+                            V1 1st playlist
+                            All default is 1st aduio
+                            multi_audio/video
+
+                        </a>
+                    <a href="http://10.2.68.7:8082/hls/multiaudio/MultiAudioOption10/MultiA05/n13audiogroup_Onevideo.m3u8" class="list-group-item">
+                            3x3 group audio 1 video
+                            All default is 1st aduio
+                            multi_audio
+
+                        </a>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                HEVC_HLS</div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <a href="http://10.2.68.7:8082/hls/hevc/hevc.m3u8" class="list-group-item">HEVC_HLS_internal_20131029</a>
+                    <a href="http://usher.justin.tv/api/channel/hls/esltv_sc2.m3u8?token={%22user_id%22:null,%22channel%22:%22esltv_sc2%22,%22expires%22:1405651898,%22chansub%22:{%22view_until%22:1924905600,%22restricted_bitrates%22:[]},%22private%22:{%22allowed_to_view%22:true},%22privileged%22:false}&sig=94ed33ddcdc98e545808b40b72e8d5cc97fc3730" class="list-group-item">LG</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                duration testlink</div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <a href="http://10.2.68.7:8082/hls/duration/2s/2sec_clip.m3u8" class="list-group-item">2sec duration </a>
+                    <a href="http://10.2.68.7:8082/hls/duration/5s/5sec_clip.m3u8" class="list-group-item">5sec duration </a>
+                    <a href="http://10.2.68.7:8082/hls/duration/10s/10sec_clip.m3u8" class="list-group-item">10sec duration </a>
+                    <a href="http://10.2.68.7:8082/hls/duration/20s/20sec_clip.m3u8" class="list-group-item">20sec duration </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
