@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title></title>
+</head>
+
+<body>
+
+    <div id="containner" style="height: 250px; width: 320px;">
+        <div id="top_area" style="background-color:rgb(225,225,225);display:flex;height:50px;width:100%;padding:5px">
+            <img src="./images/amazon.png" style="display:block;max-height:100%;" />
+            <p style="font-size:0.9rem;margin:6px;">
+                Your <span style="color:rgb(206,102,7);">Free ₹50 Amazon.in Gift Voucher</span> expires today
+            </p>
+        </div>
+        <div id="content_area" style="background-color:black;height:100%;">
+            <div style="background-color:white;width: 80%;margin-left: 10%;height: 35px;margin-top: 4vh;display: inline-block;">
+                <p id="code_string" style="margin:5px;color: black;font-weight:bold;text-align:center;font-size:1.3rem;">
+
+                </p>
+            </div>
+
+            <p style="text-align:center;color:rgb(166,165,166);font-size:0.7rem;margin:0px;">
+                Long press to copy code
+            </p>
+            <p style="text-align:center;color:white;font-size:2rem;margin:0px;">
+                ₹50
+            </p>
+            <p style="text-align:center; color:black;margin-left:100px;margin-right:100px;background-color: rgb(254,180,3);border-radius:25px;margin-top:0px;margin-bottom:0px;height:23px;padding-top:10px;font-size:0.7rem;font-weight:bold;">
+                ADD TO ACCOUNT
+            </p>
+            <p style="text-align:center;color:white;margin:6px 0px 0px 0px;">
+                Valid for your first purchase only.*
+            </p>
+            <p style="text-align:center;color:gray;font-size:small;margin:0px;">
+                Issued by QwikCilver
+            </p>
+            <p style="position:absolute;bottom:0px; right:10px;font-size:7px;color:gray;">
+                *T&C Apply
+            </p>
+        </div>
+    </div>
+    <script>
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        var code = getParameterByName("code");
+        document.getElementById("code_string").innerHTML  = code;
+    </script>
+</body>
+
+</html>
