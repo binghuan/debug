@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="BH_Lin">
+    <title>AD</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div>
+
+            <img src="./images/ad_type1.jpg" style="width:320px;height:250px;" />
+
+            <div style="width: 228px;margin-left: 54px;display: inline-block;position: absolute;top: 63px;left: 0px;padding-top: 7px;">
+                <p id="code_string" style="font-weight:bold;text-align:center;font-size:1rem;">
+                    HPOK4-K5FT4-4MLUC
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        var code = getParameterByName("code");
+        document.getElementById("code_string").innerHTML  = code;
+    </script>
+</body>
+
+</html>
