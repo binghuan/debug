@@ -37,7 +37,9 @@
             return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
         var code = getParameterByName("code");
-        document.getElementById("code_string").innerHTML  = code;
+        if(code) {
+            document.getElementById("code_string").innerHTML  = code;
+        }
     </script>
 </body>
 
