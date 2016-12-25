@@ -3,6 +3,7 @@ function runTest() {
 	// ### check current user-agent
 
 	document.getElementById("label_userAgent").innerHTML = navigator.userAgent;
+	document.getElementById("label_location").innerHTML = location.href;
 
 	// ### run test 1: check online or not.
 	if(navigator.onLine === true) {
