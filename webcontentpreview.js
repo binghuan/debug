@@ -8,3 +8,11 @@ $("#button_preview").click(function() {
     var frameWindow = document.getElementById('preview_frame').contentWindow;
     frameWindow.postMessage(editor.getValue(), location.origin);
 });
+
+$("#button_open").click(function() {
+    $("#toNewWindow").html(editor.getValue())
+    var w = window.open();
+    var html = $("#toNewWindow").html();
+    $(w.document.body).html(html);
+    $("#toNewWindow").html("");
+});
