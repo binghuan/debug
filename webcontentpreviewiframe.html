@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
+<body style="margin:0px; padding: 0px;">
+
+    <div id="toNewWindow">
+        <p>Your Preview will be here!</p>
+    </div>
+
+    <script>
+        window.addEventListener("message", receiveMessage, false);
+
+        function receiveMessage(event) {
+            var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+            if (false && origin !== "http://example.org:8080") {
+                return;
+            }
+            console.log("receiveMessage: ", event);
+            $("#toNewWindow").html(event.data);
+        }
+    </script>
+</body>
+
+</html>

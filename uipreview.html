@@ -1,257 +1,264 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>BH:UI Platform</title>
-		<link rel="stylesheet" href="jquery-ui.min.css">
-		<script src="jquery-1.11.1.min.js"></script>
-		<script src="jquery-ui.min.js"></script>
-		<script src="ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-		<style>
 
-			#uiplatform h3 {
-				text-align: center; margin: 0;
+<head>
+	<meta charset="utf-8">
+	<title>BH:UI Platform</title>
+	<link rel="stylesheet" href="jquery-ui.min.css">
+	<script src="jquery-1.11.1.min.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>
+	<style>
+		#uiplatform h3 {
+			text-align: center;
+			margin: 0;
+		}
+
+		.ace_editor {
+			border: 1px solid lightgray;
+			height: 200px;
+			width: 580px;
+		}
+	</style>
+
+	<script>
+		var datakeeper = {
+			put: function(key, value) {
+				localStorage[key] = value;
+			},
+			get: function(key) {
+				return localStorage[key];
+			}
+		}
+
+		function getParameterByName(name) {
+			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+				results = regex.exec(location.search);
+			return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+
+		function restoreData() {
+			var lastUrl = datakeeper.get("LAST_URL");
+			$("#target_url").val(lastUrl);
+			if (lastUrl != null && lastUrl !== "") {
+				loadUrlIntoIframe();
+			}
+			if (datakeeper.get("JAVASCRIPT_CODE") != null &&
+				datakeeper.get("JAVASCRIPT_CODE") !== "") {
+
+				var sourcecode = decodeURIComponent(datakeeper.get("JAVASCRIPT_CODE"));
+				editor.setValue(sourcecode);
 			}
 
-		    .ace_editor {
-		        border: 1px solid lightgray;
-		        height: 200px;
-		        width: 580px;
-		    }
-	  	</style>
+			var uiPositionLeft = datakeeper.get("UI_POSITION_LEFT");
+			var uiPositionTop = datakeeper.get("UI_POSITION_TOP");
+			if (uiPositionLeft != null && uiPositionLeft !== "") {
+				$("#uiplatform").css("left", uiPositionLeft + 'px');
+				$("#uiplatform").css("top", uiPositionTop + 'px');
+			}
 
-		<script>
+			var uiFrameWidth = datakeeper.get("UI_FRAME_WIDTH");
+			var uiFrameHeight = datakeeper.get("UI_FRAME_HEIGHT");
+			if (uiFrameWidth != null && uiFrameWidth !== "") {
+				$("#frame_width").val(uiFrameWidth);
+				$("#frame_height").val(uiFrameHeight);
 
-			var datakeeper = {
-				put: function(key, value) {
-					localStorage[key] = value;
-				},
-				get: function(key) {
-					return localStorage[key];
+				$("#uiplatform").width($("#frame_width").val());
+				$("#uiplatform").height($("#frame_height").val());
+			}
+		}
+
+		jQuery.fn.onPositionChanged = function(trigger, millis) {
+			if (millis == null) millis = 100;
+			var o = $(this[0]); // our jquery object
+			if (o.length < 1) return o;
+
+			var lastPos = null;
+			var lastOff = null;
+			setInterval(function() {
+				if (o == null || o.length < 1) return o; // abort if element is non existend eny more
+				if (lastPos == null) lastPos = o.position();
+				if (lastOff == null) lastOff = o.offset();
+				var newPos = o.position();
+				var newOff = o.offset();
+				if (lastPos.top != newPos.top || lastPos.left != newPos.left) {
+					$(this).trigger('onPositionChanged', {
+						lastPos: lastPos,
+						newPos: newPos
+					});
+					if (typeof(trigger) == "function") trigger(lastPos, newPos);
+					lastPos = o.position();
 				}
-			}
+				if (lastOff.top != newOff.top || lastOff.left != newOff.left) {
+					$(this).trigger('onOffsetChanged', {
+						lastOff: lastOff,
+						newOff: newOff
+					});
+					if (typeof(trigger) == "function") trigger(lastOff, newOff);
+					lastOff = o.offset();
+				}
+			}, millis);
 
-			function getParameterByName(name) {
-			    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-			    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-			        results = regex.exec(location.search);
-			    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-			}
+			return o;
+		};
 
-			function restoreData() {
-				var lastUrl = datakeeper.get("LAST_URL");
-				$("#target_url").val(lastUrl);
-				if(lastUrl != null && lastUrl !== "") {
+		$(function() {
+
+			$("#uiplatform").draggable();
+			$("#uiplatform").resizable();
+
+			$('#target_url').keypress(function(e) {
+				if (e.which == 13) { // Checks for the enter key
+					console.log("!");
 					loadUrlIntoIframe();
 				}
-				if(datakeeper.get("JAVASCRIPT_CODE") != null &&
-					datakeeper.get("JAVASCRIPT_CODE") !== "") {
-
-					var sourcecode = decodeURIComponent(datakeeper.get("JAVASCRIPT_CODE"));
-					editor.setValue(sourcecode);
-				}
-
-				var uiPositionLeft = datakeeper.get("UI_POSITION_LEFT");
-				var uiPositionTop = datakeeper.get("UI_POSITION_TOP");
-				if(uiPositionLeft != null && uiPositionLeft !== "") {
-					$("#uiplatform").css("left", uiPositionLeft + 'px');
-					$("#uiplatform").css("top", uiPositionTop + 'px');
-				}
-
-				var uiFrameWidth = datakeeper.get("UI_FRAME_WIDTH");
-				var uiFrameHeight = datakeeper.get("UI_FRAME_HEIGHT");
-				if(uiFrameWidth != null && uiFrameWidth !== "") {
-					$("#frame_width").val(uiFrameWidth);
-					$("#frame_height").val(uiFrameHeight);
-
-					$("#uiplatform").width($("#frame_width" ).val());
-					$("#uiplatform").height($("#frame_height" ).val());
-				}
-			}
-
-			jQuery.fn.onPositionChanged = function (trigger, millis) {
-			    if (millis == null) millis = 100;
-			    var o = $(this[0]); // our jquery object
-			    if (o.length < 1) return o;
-
-			    var lastPos = null;
-			    var lastOff = null;
-			    setInterval(function () {
-			        if (o == null || o.length < 1) return o; // abort if element is non existend eny more
-			        if (lastPos == null) lastPos = o.position();
-			        if (lastOff == null) lastOff = o.offset();
-			        var newPos = o.position();
-			        var newOff = o.offset();
-			        if (lastPos.top != newPos.top || lastPos.left != newPos.left) {
-			            $(this).trigger('onPositionChanged', { lastPos: lastPos, newPos: newPos });
-			            if (typeof (trigger) == "function") trigger(lastPos, newPos);
-			            lastPos = o.position();
-			        }
-			        if (lastOff.top != newOff.top || lastOff.left != newOff.left) {
-			            $(this).trigger('onOffsetChanged', { lastOff: lastOff, newOff: newOff});
-			            if (typeof (trigger) == "function") trigger(lastOff, newOff);
-			            lastOff= o.offset();
-			        }
-			    }, millis);
-
-			    return o;
-			};
-
-			$(function() {
-
-				$( "#uiplatform" ).draggable();
-				$( "#uiplatform" ).resizable();
-
-				$('#target_url').keypress(function(e) {
-				    if(e.which == 13) { // Checks for the enter key
-				        console.log("!");
-						loadUrlIntoIframe();
-				    }
-				});
-
-				$( "input[type=submit], a, button" ).button();
-
-				$("#uiplatform").resize(function() {
-					$("#frame_height").val($(this).height());
-					$("#frame_width").val($(this).width());
-				});
-
-				$("#uiplatform").onPositionChanged(function(){
-					datakeeper.put("UI_POSITION_LEFT", $("#uiplatform").position().left);
-					datakeeper.put("UI_POSITION_TOP", $("#uiplatform").position().top);
-				});
-
-				$("#frame_height").val($("#uiplatform").height());
-				$("#frame_width").val($("#uiplatform").width());
-
-				$("#frame_height").on("input", function(e) {
-					$("#uiplatform").height($("#frame_height" ).val());
-					datakeeper.put("UI_FRAME_HEIGHT", $("#frame_height" ).val());
-				});
-
-				$("#frame_width").on("input", function(e) {
-					$("#uiplatform").width($("#frame_width").val());
-					datakeeper.put("UI_FRAME_WIDTH", $("#frame_width" ).val());
-				});
-
-				$("#button_share").on("click", function(e) {
-					generateShareLink();
-				});
-
-				editor = ace.edit("editor");
-		    	editor.setTheme("ace/theme/monokai");
-		    	editor.getSession().setMode("ace/mode/javascript");
-
-				$('#frame').bind('load',function(event){
-                    if(!this.contentWindow){
-                        return;
-                    }
-
-                    runJavascriptCode()
-                });
-
-				if(getParameterByName("framesrc") != null &&
-					getParameterByName("framesrc") !== "") {
-
-					var configure = {};
-					configure.framesrc = getParameterByName("framesrc");
-					configure.frameheight = getParameterByName("frameheight");
-					configure.framewidth = getParameterByName("framewidth");
-					configure.frametop = getParameterByName("frametop");
-					configure.frameleft = getParameterByName("frameleft");
-					configure.javascript = getParameterByName("javascript");
-					editor.setValue(decodeURIComponent(configure.javascript));
-
-					$("#frame_height").val(configure.frameheight);
-					$("#frame_width").val(configure.framewidth);
-					$("#uiplatform").height(configure.frameheight);
-					$("#uiplatform").width(configure.framewidth);
-
-					$("#uiplatform").css("top", configure.frametop + 'px');
-					$("#uiplatform").css("left", configure.frameleft + 'px');
-
-					$("#uiplatform").css("position", "absolute");
-
-					$("#target_url").val(configure.framesrc);
-
-					loadUrlIntoIframe();
-
-				} else {
-					restoreData();
-				}
-
-
 			});
 
-			var editor = null;
+			$("input[type=submit], a, button").button();
 
-			function loadUrlIntoIframe() {
-				var targetUrl = $("#target_url").val();
+			$("#uiplatform").resize(function() {
+				$("#frame_height").val($(this).height());
+				$("#frame_width").val($(this).width());
+			});
 
-				if(targetUrl.indexOf("http://") === -1 &&
-					targetUrl.indexOf("https://") === -1) {
-					targetUrl = "http://" + targetUrl;
+			$("#uiplatform").onPositionChanged(function() {
+				datakeeper.put("UI_POSITION_LEFT", $("#uiplatform").position().left);
+				datakeeper.put("UI_POSITION_TOP", $("#uiplatform").position().top);
+			});
+
+			$("#frame_height").val($("#uiplatform").height());
+			$("#frame_width").val($("#uiplatform").width());
+
+			$("#frame_height").on("input", function(e) {
+				$("#uiplatform").height($("#frame_height").val());
+				datakeeper.put("UI_FRAME_HEIGHT", $("#frame_height").val());
+			});
+
+			$("#frame_width").on("input", function(e) {
+				$("#uiplatform").width($("#frame_width").val());
+				datakeeper.put("UI_FRAME_WIDTH", $("#frame_width").val());
+			});
+
+			$("#button_share").on("click", function(e) {
+				generateShareLink();
+			});
+
+			editor = ace.edit("editor");
+			editor.setTheme("ace/theme/monokai");
+			editor.getSession().setMode("ace/mode/javascript");
+
+			$('#frame').bind('load', function(event) {
+				if (!this.contentWindow) {
+					return;
 				}
 
-				console.log("ready to load: " + targetUrl);
+				runJavascriptCode()
+			});
 
-				$("#frame").attr("src", targetUrl);
+			if (getParameterByName("framesrc") != null &&
+				getParameterByName("framesrc") !== "") {
 
-				datakeeper.put("LAST_URL", targetUrl);
+				var configure = {};
+				configure.framesrc = getParameterByName("framesrc");
+				configure.frameheight = getParameterByName("frameheight");
+				configure.framewidth = getParameterByName("framewidth");
+				configure.frametop = getParameterByName("frametop");
+				configure.frameleft = getParameterByName("frameleft");
+				configure.javascript = getParameterByName("javascript");
+				editor.setValue(decodeURIComponent(configure.javascript));
 
-				$("#timestamp").text(new Date());
+				$("#frame_height").val(configure.frameheight);
+				$("#frame_width").val(configure.framewidth);
+				$("#uiplatform").height(configure.frameheight);
+				$("#uiplatform").width(configure.framewidth);
+
+				$("#uiplatform").css("top", configure.frametop + 'px');
+				$("#uiplatform").css("left", configure.frameleft + 'px');
+
+				$("#uiplatform").css("position", "absolute");
+
+				$("#target_url").val(configure.framesrc);
+
+				loadUrlIntoIframe();
+
+			} else {
+				restoreData();
 			}
 
-			function generateShareLink() {
-				var position = $("#uiplatform").position();
-				var configure = {
-					top: position.top,
-					left: position.left,
-					frameheight: $("#uiplatform").height(),
-					framewidth: $("#uiplatform").width(),
-					framesrc: encodeURIComponent($("#frame").attr("src")),
-					javascript: encodeURIComponent(editor.getValue())
-				};
-				var urlPath = location.origin + location.pathname + '?frametop=' + configure.top +
-							'&frameleft=' + configure.left + '&framesrc=' + configure.framesrc +
-							'&frameheight=' + configure.frameheight + '&framewidth=' + configure.framewidth +
-							'&javascript=' + configure.javascript;
 
-				alert(urlPath);
+		});
+
+		var editor = null;
+
+		function loadUrlIntoIframe() {
+			var targetUrl = $("#target_url").val();
+
+			if (targetUrl.indexOf("http://") === -1 &&
+				targetUrl.indexOf("https://") === -1) {
+				targetUrl = "http://" + targetUrl;
 			}
 
-			function runJavascriptCode() {
-				console.log("+++ runJavascriptCode +++");
+			console.log("ready to load: " + targetUrl);
 
-				var sourcecode = encodeURIComponent(editor.getValue());
-				datakeeper.put("JAVASCRIPT_CODE", sourcecode);
+			$("#frame").attr("src", targetUrl);
 
-				eval(editor.getValue());
-			}
+			datakeeper.put("LAST_URL", targetUrl);
 
-		</script>
+			$("#timestamp").text(new Date());
+		}
 
-	</head>
-		<body style="background-image: url('images/grid.png');">
-		<div>
-			<h3 style="display:inline;padding-right:20px">Welcome to BH_Lin's UI platform</h3><button id="button_share">Share UI Preview</button>
-		</div>
-		<p style="margin-bottom:0px">Enter a website address here: </p>
-		<input id="target_url" type="url" style="width:480px"> <button onclick="loadUrlIntoIframe()">Load</button>
-		<div>
-			<h4 style="display:inline">Size of UI Frame:</h4>
-			<p style="display:inline"> widht: <input type="number" id="frame_width" style="color:red;"></span> px</p>
-			<p style="display:inline"> height: <input type="number" id="frame_height" style="color:red;"></span> px</p>
-			<p>Last updated: <span id="timestamp">--/--/-- --:--:--</span></p>
+		function generateShareLink() {
+			var position = $("#uiplatform").position();
+			var configure = {
+				top: position.top,
+				left: position.left,
+				frameheight: $("#uiplatform").height(),
+				framewidth: $("#uiplatform").width(),
+				framesrc: encodeURIComponent($("#frame").attr("src")),
+				javascript: encodeURIComponent(editor.getValue())
+			};
+			var urlPath = location.origin + location.pathname + '?frametop=' + configure.top +
+				'&frameleft=' + configure.left + '&framesrc=' + configure.framesrc +
+				'&frameheight=' + configure.frameheight + '&framewidth=' + configure.framewidth +
+				'&javascript=' + configure.javascript;
 
-		</div>
-		<h3 style="display:inline">###Enter some JavaScript codes for test</h3> -
-		<button onclick="runJavascriptCode()">Run JavaScript</button>
-		<pre id="editor">console.log("show me the code");</pre>
+			alert(urlPath);
+		}
 
-		<div id="uiplatform" class="ui-widget-content" style="height:60px;width:200px;top:80px;left:600px;position:absolute">
-			<h3 class="ui-widget-header">ID: frame</h3>
-			<iframe id="frame" style="height:100%;width:100%;"></iframe>
-		</div>
-	</body>
+		function runJavascriptCode() {
+			console.log("+++ runJavascriptCode +++");
+
+			var sourcecode = encodeURIComponent(editor.getValue());
+			datakeeper.put("JAVASCRIPT_CODE", sourcecode);
+
+			eval(editor.getValue());
+		}
+	</script>
+
+</head>
+
+<body style="background-image: url('images/grid.png');">
+	<div>
+		<h3 style="display:inline;padding-right:20px">Welcome to BH_Lin's UI platform</h3><button id="button_share">Share UI Preview</button>
+	</div>
+	<p style="margin-bottom:0px">Enter a website address here: </p>
+	<input id="target_url" type="url" style="width:480px"> <button onclick="loadUrlIntoIframe()">Load</button>
+	<div>
+		<h4 style="display:inline">Size of UI Frame:</h4>
+		<p style="display:inline"> widht: <input type="number" id="frame_width" style="color:red;"></span> px</p>
+		<p style="display:inline"> height: <input type="number" id="frame_height" style="color:red;"></span> px</p>
+		<p>Last updated: <span id="timestamp">--/--/-- --:--:--</span></p>
+
+	</div>
+	<h3 style="display:inline">###Enter some JavaScript codes for test</h3> -
+	<button onclick="runJavascriptCode()">Run JavaScript</button>
+	<pre id="editor">console.log("show me the code");</pre>
+
+	<div id="uiplatform" class="ui-widget-content" style="height:60px;width:200px;top:80px;left:600px;position:absolute">
+		<h3 class="ui-widget-header">ID: frame</h3>
+		<iframe id="frame" style="height:100%;width:100%;"></iframe>
+	</div>
+</body>
+
 </html>
