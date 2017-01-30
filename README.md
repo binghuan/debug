@@ -76,6 +76,14 @@ the usage of this debuging page.
             <p>A page to test function atob and btoa</p>
         </div>
     </li>
+
+    <li>
+        <div>
+            <h4>Page: <a href="http://binghuan.github.io/debug/checkdepth.html">checkdepth.html</a></h4>
+            <p>Check file depth for including.</p>
+        </div>
+    </li>
+
 </ul>
 
 
