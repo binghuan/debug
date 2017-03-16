@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html>
-<body>
 
-<video id='video' width="320" height="240" controls>
-  <source src="//www.w3schools.com/tags/movie.mp4" type="video/mp4">
-  <source src="//www.w3schools.com/tags/movie.mp4" type="video/ogg">
-  Your browser does not support the video tag.
-</video>
+<head>
 
-<p><strong>Note:</strong> The video tag is not supported in Internet Explorer 8 and earlier versions.</p>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>3DS WebClient</title>
 
+  <!-- Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body style="padding: 10px;">
+
+  <div class="form-group">
+    <label for="videosrc">Enter video URL:</label>
+    <div style="display: flex;">
+      <button id="btn_load_video" class="btn btn-primary">Load</button>
+      <input type="url" class="form-control" id="video_src_textfield" placeholder="http://XXX.XXX.mp4" value="http://www.w3schools.com/tags/movie.mp4">
+    </div>
+    <p><span>Loading time: </span><span id="spending_time"> --- </span></p>
+  </div>
+
+  <video id='video_player' width="100%" height="auto" controls src="//www.w3schools.com/tags/movie.mp4"></video>
+
+  <p><strong>Note:</strong> The video tag is not supported in Internet Explorer 8 and earlier versions.</p>
+  <script src="video.js"></script>
 </body>
+
 </html>
