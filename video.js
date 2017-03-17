@@ -4,11 +4,30 @@ var mVideoPlayer = null;
 var mTimestampStart = null;
 var mTimestampEnd = null;
 
+function resizeVideo() {
+    mVideoPlayer = document.getElementById("video_player");
+    if(mVideoPlayer == null) {
+        return;
+    }
+
+    if(window.innerHeight > window.innerWidth) {
+        mVideoPlayer.style.width = "100%";
+        mVideoPlayer.style.height = "auto";
+    } else {
+        mVideoPlayer.style.width = "auto";
+        $(mVideoPlayer).height(window.innerHeight - $(mVideoPlayer).position().top - 100 );
+    }
+}
+
+window.onresize = function(event) {
+    resizeVideo();
+};
 
 $("document").ready(function () {
     console.log("Document is ready ");
 
-    mVideoPlayer = document.getElementById("video_player");
+    resizeVideo();
+
     mVideoPlayer.onloadstart = function () {
         mTimestampStart = new Date() ;
         console.log("Starting to load video", mTimestampStart);
