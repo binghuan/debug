@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>3DS WebClient</title>
+  <title>Video Player</title>
 
   <!-- Bootstrap -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -21,6 +21,15 @@
 
 <body style="padding: 10px;">
 
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand">BH's Video Player</a>
+      </div>
+    </div>
+  </nav>
+
   <div class="form-group">
     <label for="videosrc">Enter video URL:</label>
     <div style="display: flex;">
@@ -30,7 +39,7 @@
     <p><span>Loading time: </span><span id="spending_time"> --- </span></p>
   </div>
 
-  <video id='video_player' width="100%" height="auto" controls src="//www.w3schools.com/tags/movie.mp4"></video>
+  <video id='video_player' autoPlay width="100%" height="auto" controls src="//www.w3schools.com/tags/movie.mp4"></video>
 
   <p><strong>Note:</strong> The video tag is not supported in Internet Explorer 8 and earlier versions.</p>
   <script src="video.js"></script>

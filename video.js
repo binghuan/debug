@@ -27,5 +27,11 @@ $("document").ready(function () {
         console.log("load video: ___" + inputOfVideoSrc + "____");
         console.log("origional video src: " + $("#video_player").attr("src"));
         $("#video_player").attr("src", inputOfVideoSrc);
+        sessionStorage.lastPlayVideo = inputOfVideoSrc;
     });
+
+    if(sessionStorage.lastPlayVideo != null) {
+        $("#video_player").attr("src", sessionStorage.lastPlayVideo);
+        $("#video_src_textfield").val(sessionStorage.lastPlayVideo);
+    }
 });
