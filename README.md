@@ -33,57 +33,48 @@ the usage of this debuging page.
             <p>Try to test method 'postMessage' with iframe</p>
         </div>
     </li>
-
     <li>
         <div>
             <h4>Page: <a href="http://binghuan.github.io/debug/bookmarkMaker.html">bookmarkMaker.html</a></h4>
             <p>Generate bookmark link by your way</p>
         </div>
     </li>
-
     <li>
         <div>
             <h4>Page: <a href="http://binghuan.github.io/debug/clickjacking.html">clickjacking.html</a></h4>
             <p>demostration of clickjacking</p>
         </div>
     </li>
-
     <li>
         <div>
             <h4>Page: <a href="http://binghuan.github.io/debug/testKeycodeEvent.html">testKeycodeEvent.html</a></h4>
             <p>demostration of hooking keycode event</p>
         </div>
     </li>
-
     <li>
         <div>
             <h4>Page: <a href="postMessageProfile.html">postMessageProfile.html</a></h4>
             <p>A testing page for auditing performance of message passing.</p>
         </div>
     </li>
-
-
     <li>
         <div>
             <h4>Page: <a href="http://binghuan.github.io/debug/uipreview.html">uipreview.html</a></h4>
             <p>A dragable and resizeable iframe box to let you load ui into iframe.</p>
         </div>
     </li>
-
     <li>
         <div>
             <h4>Page: <a href="http://binghuan.github.io/debug/base64.html">base64.html</a></h4>
             <p>A page to test function atob and btoa</p>
         </div>
     </li>
-
     <li>
         <div>
             <h4>Page: <a href="http://binghuan.github.io/debug/checkdepth.html">checkdepth.html</a></h4>
             <p>Check file depth for including.</p>
         </div>
     </li>
-
 </ul>
 
 
