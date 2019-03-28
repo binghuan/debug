@@ -14,10 +14,15 @@
 </head>
 
 <body>
-    <h3>You can call the method showMessage("{TEXT}")!</h3>
 
-    <div id="text_bar" class="alert alert-primary" role="alert">
-        You Message will be here.
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">WebView Test</h1>
+            <p class="lead">You can call the method showTime()!</p>
+            <div id="text_bar" class="alert alert-primary" role="alert">
+                The time will be shown right here
+            </div>
+        </div>
     </div>
 
     <!-- Optional JavaScript -->
@@ -34,14 +39,14 @@
 
     <script>
 
-        function showMessage(text) {
-            console.log("showMessage:", text);
-            if(text != null ) {
+        function showTime(text) {
+            console.log("showTimes:", text);
+            if (text != null) {
                 $("#text_bar").text(text);
             } else {
                 $("#text_bar").text(new Date());
             }
-            
+
             console.log("hide");
             $("#text_bar").hide();
             setTimeout(function () {
