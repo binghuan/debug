@@ -36,7 +36,12 @@
 
         function showMessage(text) {
             console.log("showMessage:", text);
-            $("#text_bar").text(text);
+            if(text != null ) {
+                $("#text_bar").text(text);
+            } else {
+                $("#text_bar").text(new Date());
+            }
+            
             console.log("hide");
             $("#text_bar").hide();
             setTimeout(function () {
