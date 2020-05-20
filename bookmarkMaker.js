@@ -25,6 +25,8 @@ function shareBookmark() {
 	link += "?name=" + encodeURIComponent(bookmarkName.value) + "&script=" + encodeURIComponent(btoa(bookmarkContent.value));
 	document.getElementById("link_to_share").href = link;
 	document.getElementById("link_to_share").innerHTML = link;
+
+	document.getElementById("length").innerText = "length: " + link.length;
 }
 
 let bookmarkLink = null;
