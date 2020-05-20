@@ -22,7 +22,7 @@ function generateBookmark() {
 function shareBookmark() {
 	console.log(">> shareBookmark");
 	let link = location.protocol + "//" + location.host + location.pathname;
-	link += "?name=" + encodeURIComponent(bookmarkName.value) + "&script=" + btoa(bookmarkContent.value);
+	link += "?name=" + encodeURIComponent(bookmarkName.value) + "&script=" + encodeURIComponent(btoa(bookmarkContent.value));
 	document.getElementById("link_to_share").href = link;
 	document.getElementById("link_to_share").innerHTML = link;
 }
@@ -42,12 +42,13 @@ $("document").ready(function () {
 	console.log("name = ", name);
 	console.log("script = ", script);
 	if (script != null) {
-		bookmarkLink.href = atob(script);
-		bookmarkContent.value = atob(script);
-		
+		let decodedScript = decodeURIComponent(script);
+		bookmarkLink.href = atob(decodedScript);
+		bookmarkContent.value = atob(decodedScript);
+
 		bookmarkLink.innerHTML = decodeURIComponent(name);
 		bookmarkName.value = decodeURIComponent(name);
-		
+
 		generateBookmark();
 	}
 
