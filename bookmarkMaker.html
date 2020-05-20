@@ -1,51 +1,58 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <title>Bootstrap 101 Template</title>
 
-	    <!-- Bootstrap -->
-	    <link href="css/bootstrap.min.css" rel="stylesheet">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>bookmarkMaker</title>
 
-	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	    <!--[if lt IE 9]>
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
 	      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	    <![endif]-->
 
-	    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	    <!-- Include all compiled plugins (below), or include individual files as needed -->
-	    <script src="js/bootstrap.min.js"></script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="./jquery-3.5.1.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
 
-		<script src="bookmarkMaker.js"></script>
+	<script src="bookmarkMaker.js"></script>
 
-	</head>
-	<body>
+	<style>
+		a:hover {
+			background-color: yellow;
+			cursor: pointer;
+		}
+	</style>
+</head>
 
-		<div style='padding:20pt'>
-			<div class="form-group">
-			    <label for="bookmarkname">Bookmark name</label>
-				<input type="text" class="form-control" id="text_bookmarkname" placeholder="EnterBookMarkName">
-			</div>
-
-			<div class="form-group">
-			    <label for="bookmarkContent">Bookmark Content</label>
-				<textarea  class="form-control" id="text_bookmarkContent" rows="10" cols="100">
-				
-				</textarea>
-			</div>
-
-			<button id="btnGenerateLink" class="btn btn-primary">Generate Link for bookmark</button> 
-			<a style='margin:50pt' id="result_of_bookmark">YourBookmarkName</a>
-			
-			
+<body>
+	<div style='padding:20pt'>
+		<div class="form-group">
+			<label for="bookmarkname">Bookmark name</label>
+			<input type="text" class="form-control" id="text_bookmarkname" placeholder="EnterBookMarkName"
+				value="My Book Mark">
 		</div>
 
+		<div class="form-group">
+			<label for="bookmarkContent">Bookmark Content</label>
+			<textarea class="form-control" id="text_bookmarkContent" rows="10" cols="100"></textarea>
+		</div>
 
+		<button id="btnGenerateLink" class="btn btn-primary">Generate Link for bookmark</button>
+		→ [[ <a id="result_of_bookmark"> Drap me to your bookmarks bar. </a> ]]
 
-	</body>
+		<br/><br/>
+		<button id="btnShareBookmark" class="btn btn-primary">Share Bookmark</button>
+		<br/><br/>
+		→ <a id="link_to_share">.................</a>
+	</div>
+</body>
+
 </html>

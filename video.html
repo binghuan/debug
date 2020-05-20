@@ -34,12 +34,14 @@
     <label for="videosrc">Enter video URL:</label>
     <div style="display: flex;">
       <button id="btn_load_video" class="btn btn-primary">Load</button>
-      <input type="url" class="form-control" id="video_src_textfield" placeholder="http://XXX.XXX.mp4" value="http://www.w3schools.com/tags/movie.mp4">
+      <input type="url" class="form-control" id="video_src_textfield" placeholder="http://XXX.XXX.mp4"
+        value="http://www.w3schools.com/tags/movie.mp4">
     </div>
     <p><span>Loading time: </span><span id="spending_time"> --- </span></p>
   </div>
 
-  <video id='video_player' autoPlay width="100%" height="auto" controls src="//www.w3schools.com/tags/movie.mp4"></video>
+  <video id='video_player' autoPlay width="100%" height="auto" controls 
+    src="//www.w3schools.com/tags/movie.mp4" type="application/x-mpegURL"></video>
 
   <p><strong>Note:</strong> The video tag is not supported in Internet Explorer 8 and earlier versions.</p>
   <script src="video.js"></script>
