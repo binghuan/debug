@@ -6,20 +6,20 @@ var mTimestampEnd = null;
 
 function resizeVideo() {
     mVideoPlayer = document.getElementById("video_player");
-    if(mVideoPlayer == null) {
+    if (mVideoPlayer == null) {
         return;
     }
 
-    if(window.innerHeight > window.innerWidth) {
+    if (window.innerHeight > window.innerWidth) {
         mVideoPlayer.style.width = "100%";
         mVideoPlayer.style.height = "auto";
     } else {
         mVideoPlayer.style.width = "auto";
-        $(mVideoPlayer).height(window.innerHeight - $(mVideoPlayer).position().top - 100 );
+        $(mVideoPlayer).height(window.innerHeight - $(mVideoPlayer).position().top - 100);
     }
 }
 
-window.onresize = function(event) {
+window.onresize = function (event) {
     resizeVideo();
 };
 
@@ -29,16 +29,16 @@ $("document").ready(function () {
     resizeVideo();
 
     mVideoPlayer.onloadstart = function () {
-        mTimestampStart = new Date() ;
+        mTimestampStart = new Date();
         console.log("Starting to load video", mTimestampStart);
     };
 
-    mVideoPlayer.onloadeddata = function() {
-        mTimestampEnd = new Date() ;
+    mVideoPlayer.onloadeddata = function () {
+        mTimestampEnd = new Date();
         console.log("Ending to load video", mTimestampEnd);
         var timeDiff = mTimestampEnd - mTimestampStart;
-        console.log("Spending time to load video: ", timeDiff/1000);
-        $("#spending_time").text(timeDiff/1000 + " s");
+        console.log("Spending time to load video: ", timeDiff / 1000);
+        $("#spending_time").text(timeDiff / 1000 + " s");
     }
 
     $("#btn_load_video").click(function () {
@@ -49,7 +49,7 @@ $("document").ready(function () {
         sessionStorage.lastPlayVideo = inputOfVideoSrc;
     });
 
-    if(sessionStorage.lastPlayVideo != null) {
+    if (sessionStorage.lastPlayVideo != null) {
         $("#video_player").attr("src", sessionStorage.lastPlayVideo);
         $("#video_src_textfield").val(sessionStorage.lastPlayVideo);
     }
