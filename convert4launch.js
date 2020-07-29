@@ -17,14 +17,17 @@ btnConvert.onclick = () => {
     // By lines
     let lines = textfield.value.split('\n');
     for (let i = 0; i < lines.length; i++) {
-        let line = lines[i];
-        let newLine = replaceAll(lines[i], "'", "").trim();
+        let line = replaceAll(lines[i], "',", "").trim();
+        let newLine = line;
+        if (line.startsWith("'")) {
+            newLine = line.replace("'", "");
+        }
         console.log(`#${i}: ${newLine}`);
         args.push(newLine);
     }
 
     console.log("### OUTPUT: ");
-    let result = "\"args\":" +  JSON.stringify(args);
+    let result = "\"args\":" + JSON.stringify(args);
     console.log(result);
     outputfield.value = result
 }
