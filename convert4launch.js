@@ -24,7 +24,7 @@ btnConvert.onclick = () => {
     }
 
     console.log("### OUTPUT: ");
-    let result = "\"args:\"" +  JSON.stringify(args);
+    let result = "\"args\":" +  JSON.stringify(args);
     console.log(result);
     outputfield.value = result
 }
