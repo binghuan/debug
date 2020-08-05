@@ -14,7 +14,12 @@
 </head>
 
 <body>
-    <h1>closetabs</h1>
+    <div class="alert alert-primary" role="alert">
+        <h1 style="display: inline">Close Tabs ...</h1>
+        <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -27,7 +32,13 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
     <script>
-        location.href = "beaker://enmabrowser.api/closetabs";
+        fetch("beaker://enmabrowser.api/closetabs")
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                console.log(myJson);
+            });
     </script>
 </body>
 
