@@ -15,17 +15,19 @@ btnConvert.onclick = () => {
     console.log("onclick");
 
     let args = [];
-    
+
     // By lines
     let lines = textfield.value.split('\n');
     for (let i = 0; i < lines.length; i++) {
         let line = replaceAll(lines[i], "',", "").trim();
-        let newLine = line;
         if (line.startsWith("'")) {
-            newLine = line.replace("'", "");
+            line = line.replace("'", "");
         }
-        console.log(`#${i}: ${newLine}`);
-        args.push(newLine);
+        if (line.endsWith("'")) {
+            line = line.substring(line, line.length -1 );
+        }
+        console.log(`#${i}: ${line}`);
+        args.push(line);
     }
 
     console.log("### OUTPUT: ");
