@@ -9,11 +9,13 @@ let outputfield = document.getElementById("output");
 
 let btnConvert = document.getElementById("btn_convert");
 
-let args = [];
+
 
 btnConvert.onclick = () => {
     console.log("onclick");
 
+    let args = [];
+    
     // By lines
     let lines = textfield.value.split('\n');
     for (let i = 0; i < lines.length; i++) {
