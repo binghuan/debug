@@ -24,7 +24,7 @@ btnConvert.onclick = () => {
             line = line.replace("'", "");
         }
         if (line.endsWith("'")) {
-            line = line.substring(line, line.length -1 );
+            line = line.substring(line, line.length - 1);
         }
         console.log(`#${i}: ${line}`);
         args.push(line);
