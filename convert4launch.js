@@ -8,7 +8,7 @@ let textfield = document.getElementById("textfield");
 let outputfield = document.getElementById("output");
 
 let btnConvert4launch = document.getElementById("btn_convert");
-let btnConvert2cli = document.getElementById("btn_convert2");
+let btnConvert4cli = document.getElementById("btn_convert2");
 
 function getArgs() {
     let args = [];
@@ -38,8 +38,8 @@ btnConvert4launch.onclick = () => {
     outputfield.value = result
 }
 
-btnConvert2cli.onclick = () => {
-    console.log("btnConvert2cli");
+btnConvert4cli.onclick = () => {
+    console.log("btnConvert4cli");
     console.log("### OUTPUT: ");
     let parameters = getArgs();
     let result = "";
