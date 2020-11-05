@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <h1>Redirecting ...</h1>
+    <h1 id="target_url">Redirecting ...</h1>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -41,7 +41,10 @@
         }
 
         let targetURL = getParameterByName("url");
-        window.open("_blank", targetURL);
+
+        //document.getElementById("target_url").innerText;
+
+        window.open(targetURL, "_blank");
 
     </script>
 </body>
