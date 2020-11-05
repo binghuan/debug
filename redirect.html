@@ -41,10 +41,14 @@
         }
 
         let targetURL = getParameterByName("url");
+        console.log("redirect to URL:", targetURL);
+        document.getElementById("target_url").innerText = "Redirecting ... " + targetURL;
+        if ( targetURL != null ) {
+            window.open(targetURL, "_blank");
+        }
+        
 
-        //document.getElementById("target_url").innerText;
-
-        window.open(targetURL, "_blank");
+        
 
     </script>
 </body>
