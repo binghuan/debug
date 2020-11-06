@@ -15,7 +15,7 @@
 
 <body>
     <div class="alert alert-success" role="alert">
-        <h1 style="display: inline" id="target_url">Redirecting ...</h1>
+        <h1 style="display: inline" id="target_url">Redirect to ...</h1>
         <div class="spinner-grow text-dark" role="status">
             <span class="sr-only">Loading...</span>
         </div>
@@ -45,7 +45,7 @@
 
         let targetURL = getParameterByName("url");
         console.log("redirect to URL:", targetURL);
-        document.getElementById("target_url").innerText = "Redirecting ... " + targetURL;
+        document.getElementById("target_url").innerText = `Redirect to ${targetURL}`;
         if (targetURL != null) {
             //window.open(targetURL);
             window.location.href = targetURL;
