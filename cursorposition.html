@@ -12,17 +12,12 @@
 
     <title>Cursor Position</title>
     <script>
-        let maxHeight = 0;
         function getPos(e) {
             x = e.clientX;
             y = e.clientY;
             cursor = "Mouse Hover on (X: " + x + ", Y: " + y + " )";
             document.getElementById("displayArea").innerHTML = cursor
-
-            if (y > maxHeight) {
-                maxHeight = y;
-            }
-            document.getElementById("safeArea").style.height = maxHeight + "px"
+            document.getElementById("safeArea").style.height = y + "px"
         }
     </script>
 </head>
@@ -30,10 +25,8 @@
 <body onmousemove="getPos(event)" style="height: 100vh; width: 100vw">
     <!-- Optional JavaScript; choose one of the two! -->
     <div id="safeArea" style="position: absolute; top: 0px; width: 100vw; height: 0px; background-color: green"></div>
-    <div style="position: absolute;width: 100vw; display: flex; flex-direction: dolumn;">
-        <div></div>
-        <p id="displayArea" style="width: 100%; text-align: center;">0,0</p>
-        <div></div>
+    <div style="position: absolute;width: 100vw; display: flex; flex-direction: column;">
+        <p id="displayArea" style="width: 100%; margin-top: 25%; text-align: center;font-size: 24px">0,0</p>
     </div>
 
 
