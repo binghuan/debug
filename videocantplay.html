@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            background-color: #000;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .content {
+            width: 100%;
+            max-width: 500px;
+            color: #fff;
+        }
+
+        .btn-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5px;
+            margin-bottom: 1rem;
+        }
+
+        .btn-row a,
+        span {
+            display: flex;
+            align-items: center;
+            width: calc((100% - 20px) / 2);
+            height: 80px;
+        }
+
+        .btn-row>a {
+            text-decoration: none;
+        }
+
+        .btn-row>a>.btn {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #3c75f1;
+            border-radius: 4px;
+            background: linear-gradient(156deg, #3c75f1, #00a3ff 100%);
+            color: #fff;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .btn-row>span {
+            font-size: 1.3rem;
+        }
+
+        .btn-row>span>a {
+            margin-left: 6px;
+            color: #3c75f1;
+        }
+
+        .text {
+            font-size: 1.3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="btn-row">
+                <a href="https://chmem.com/login" target="_top">
+                    <button class="btn">立即注册</button>
+                </a>
+                <span>
+                    已是会员,请
+                    <a href="https://chmem.com/login" target="_top">登录></a>
+                </span>
+            </div>
+            <p class="text">无法播放影片，非鹰马会员暂时不能播放该视频</p>
+        </div>
+    </div>
+</body>
+
+</html>
