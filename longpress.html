@@ -71,7 +71,7 @@
 
         function dismissAllMenu(e) {
             if (e != null && (e.target == rightButton ||
-                    e.target == leftButton)) {
+                e.target == leftButton)) {
                 return;
             }
             console.log(">> dismissAllMenu");
@@ -90,12 +90,10 @@
         }
 
         function toggleMenu(menu) {
-
             if (timer != null) {
                 clearTimer();
                 return;
             }
-
             if (menu.style.visibility == "hidden") {
                 menu.style.visibility = "visible";
             } else {
@@ -163,9 +161,7 @@
         }
         function onClickRightButton() {
             setEventName("click");
-
             toggleMenu(rightMenu);
-
         }
 
     </script>
