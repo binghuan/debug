@@ -81,22 +81,26 @@
 
         function showMenu(menu) {
             menu.style.visibility = "visible";
+            clearTimer();
+        }
+        function hideMenu(menu) {
+            menu.style.visibility = "hidden";
+            clearTimer();
         }
 
         function clearTimer() {
             clearInterval(timer);
             clearTimeout(timer4Menu);
             seconds = 0.00;
+            //console.log(">> clearTimer", timer, timer4Menu);
         }
 
         function toggleMenu(menu) {
-            if (timer != null) {
-                clearTimer();
-                return;
-            }
             if (menu.style.visibility == "hidden") {
+                console.log("show menu");
                 menu.style.visibility = "visible";
             } else {
+                console.log("hide menu");
                 menu.style.visibility = "hidden";
             }
         }
@@ -105,63 +109,86 @@
         let timer = null;
         let timer4Menu = null;
         const defaultTimer2OpenMenu = 2000;
+        let menuWasOpenedByLongPress = false;
 
         function onLeftButtonMousedown(e) {
+            console.log(">> onLeftButtonMousedown");
             setEventName("mousedown");
-            dismissAllMenu();
+            clearTimer();
             timer = setInterval(() => {
                 seconds += 0.1;
                 eventTimer.innerText = `${seconds.toFixed(2)} seconds`;
             }, 100)
             timer4Menu = setTimeout(() => {
                 showMenu(leftMenu);
+                menuWasOpenedByLongPress = true;
             }, defaultTimer2OpenMenu)
         }
         function onLeftButtonMouseup(e) {
             setEventName("mouseup");
+            clearTimer();
         }
         function onLeftButtonMouseleave(e) {
             setEventName("mouseleave");
             clearTimer();
         }
         function onRightClickLeftButton(e) {
+            console.log(">> onRightClickLeftButton");
             setEventName("right click");
             e.preventDefault();
+            clearTimer();
             toggleMenu(leftMenu);
             return false;
         }
         function onClickLeftButton() {
+            console.log(">> onClickLeftButton");
             setEventName("click");
-            toggleMenu(leftMenu);
+            if (menuWasOpenedByLongPress == true) {
+                menuWasOpenedByLongPress = false
+                return;
+            }
+
+            hideMenu(leftMenu);
         }
 
         function onRightButtonMousedown(e) {
+            console.log(">> onRightButtonMousedown");
             setEventName("mousedown");
-            dismissAllMenu();
+            clearTimer();
             timer = setInterval(() => {
                 seconds += 0.1;
                 eventTimer.innerText = `${seconds.toFixed(2)} seconds`;
             }, 100)
             timer4Menu = setTimeout(() => {
                 showMenu(rightMenu);
+                menuWasOpenedByLongPress = true;
             }, defaultTimer2OpenMenu)
         }
         function onRightButtonMouseup(e) {
             setEventName("mouseup");
+            clearTimer();
         }
         function onRightButtonMouseleave(e) {
             setEventName("mouseleave");
             clearTimer();
         }
         function onRightClickRightButton(e) {
+            console.log(">> onRightClickRightButton");
             e.preventDefault();
             setEventName("right click");
+            clearTimer();
             toggleMenu(rightMenu);
             return false;
         }
         function onClickRightButton() {
+            console.log(">> onClickRightButton");
             setEventName("click");
-            toggleMenu(rightMenu);
+            if (menuWasOpenedByLongPress == true) {
+                menuWasOpenedByLongPress = false
+                return;
+            }
+
+            hideMenu(rightMenu);
         }
 
     </script>
