@@ -70,8 +70,8 @@
         document.getElementById("capture_window").style.width = window.innerWidth*0.7 + "px";
 
         const constraints = {
-            video: true,
-            facingMode: 'environment'
+            audio: false, 
+            video: {facingMode: 'environment'}
         };
 
         captureButton.addEventListener('click', () => {
