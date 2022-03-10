@@ -90,6 +90,11 @@
             .then((stream) => {
                 player.srcObject = stream;
             });
+
+        setTimeout(() => {
+            player.play();
+        }, 1000);
+        
     </script>
 
     <!-- Optional JavaScript; choose one of the two! -->
