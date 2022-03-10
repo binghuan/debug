@@ -18,7 +18,7 @@
 
     <div style="position:relative">
         <video id="player" autoplay style="width:100%"></video>
-        <div style="top: 25%; left: 25%;position:absolute;width: 300px; height: 180px;border:5px #FFAC55 solid;"></div>
+        <div id="capture_window" style="top: 20%; margin-left: 15%; margin-right:15%; position:absolute; height: 180px;border:5px #FFAC55 solid;"></div>
         <button style="position:absolute; bottom:10%; left:45%" id="capture" type="button" class="btn btn-primary"><svg
                 xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera"
                 viewBox="0 0 16 16">
@@ -67,8 +67,11 @@
         const context = canvas.getContext('2d');
         const captureButton = document.getElementById('capture');
 
+        document.getElementById("capture_window").style.width = window.innerWidth*0.7 + "px";
+
         const constraints = {
             video: true,
+            facingMode: 'environment'
         };
 
         captureButton.addEventListener('click', () => {
