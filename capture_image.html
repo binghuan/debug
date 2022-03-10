@@ -14,14 +14,7 @@
 </head>
 
 <body>
-    <div class="card" style="width: 18rem;">
-        <img id="uploaded_image" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Upload File</h5>
-            <p class="card-text">Preview your uploaded file</p>
-            <input type="file" accept="image/*" id="file-input">
-        </div>
-    </div>
+
 
     <div style="position:relative">
         <video id="player" autoplay style="width:100%"></video>
@@ -36,8 +29,21 @@
                     d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z">
                 </path>
             </svg></button>
+        <img style="position:absolute; right: 10%; bottom: 10%; width: 100px;" id="captured_image"
+            class="card-img-right" alt="...">
+
     </div>
     <canvas id="canvas" style="display:none;" width=320 height=240></canvas>
+
+    <div class="card" style="width: 18rem;">
+        <img id="uploaded_image" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Upload File</h5>
+            <p class="card-text">Preview your uploaded file</p>
+            <input type="file" accept="image/*" id="file-input">
+        </div>
+    </div>
+
     <script>
 
         const fileInput = document.getElementById('file-input');
@@ -71,7 +77,7 @@
             context.drawImage(player, 0, 0, canvas.width, canvas.height);
 
             // Draw the video frame to the image
-            let img = document.getElementById("uploaded_image");
+            let img = document.getElementById("captured_image");
             img.src = canvas.toDataURL();
 
         });
