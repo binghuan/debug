@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Check Channels</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1>Check Channles</h1>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+
+    <div style="display:flex">
+
+        
+        <div style="flex:1;height: 80vh;">
+            <p style="text-align: center;">Original Data from JSON file</p>
+            <textarea id="list_from_json" style="width: 100%; height: 100%">
+            </textarea>
+        </div>
+        <div style="flex:1;height: 80vh;">
+            <p style="text-align: center;">Modified Data from Excel</p>
+            <textarea id="list_from_excel" style="width: 100%; height: 100%">
+            </textarea>
+        </div>
+
+        <div style="height: 80vh;">
+            <p style="text-align: center;">---</p>
+            <button id="btn_check" style="height: 100%">Check Diff</button>
+
+        </div>
+
+        <div style="flex:1;height: 80vh;">
+            <p style="text-align: center;">New JSON file</p>
+            <textarea id="list_for_new" style="width: 100%; height: 100%">
+            </textarea>
+
+        </div>
+    </div>
+
+    <script>
+
+        let modifiedData,originalData,jsonResultField;
+
+        function checkDiff() {
+
+
+            let channelSet = new Set()
+            let linesFromExcel = modifiedData.value.split("\n");
+            for (let i = 0; i < linesFromExcel.length; i++) {
+                let channel = linesFromExcel[i].trim();
+                if (channel != "") {
+                    channelSet.add(channel);
+                    //console.log("size of set:", channelSet.size);
+                }
+            }
+
+            let result = ""
+
+            let originalChannels = JSON.parse(originalData.value).channelInfoList;
+            for (let i = 0; i < originalChannels.length; i++) {
+                let channel = originalChannels[i].channel.trim();
+                if (channel != "") {
+                    if (!channelSet.has(channel)) {
+                        result += "- " + channel + "\n"
+                    }
+                }
+            }
+
+            let newJson = {
+                channelInfoList: []
+            }
+
+            for (let item of channelSet) {
+                //console.log("push:", item);
+                newJson.channelInfoList.push(`${item}`)
+            }
+
+            jsonResultField.value =  JSON.stringify(newJson, null, "\t")
+            localStorage.originalChannels = originalData.value;
+            localStorage.modifiedChannels = modifiedData.value;
+            localStorage.newChannels = JSON.stringify(newJson, null, "\t")
+            alert(result);
+        }
+
+        btnCheck = document.getElementById("btn_check")
+        btnCheck.onclick = function () {
+            checkDiff();
+        }
+
+        window.addEventListener("load", function () {
+            console.log("load...");
+            modifiedData = document.getElementById("list_from_excel");
+            originalData = document.getElementById("list_from_json");
+            jsonResultField = document.getElementById("list_for_new")
+
+            modifiedData.value = localStorage.modifiedChannels;
+            originalData.value = localStorage.originalChannels;
+            jsonResultField.value = localStorage.newChannels;
+        });
+
+
+    </script>
+
+</body>
+
+</html>
