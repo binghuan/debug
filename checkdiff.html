@@ -17,7 +17,7 @@
 
     <div style="display:flex">
 
-        
+
         <div style="flex:1;height: 80vh;">
             <p style="text-align: center;">Original Data from JSON file</p>
             <textarea id="list_from_json" style="width: 100%; height: 100%">
@@ -45,7 +45,7 @@
 
     <script>
 
-        let modifiedData,originalData,jsonResultField;
+        let modifiedData, originalData, jsonResultField;
 
         function checkDiff() {
 
@@ -62,6 +62,7 @@
 
             let result = ""
 
+            let originalChannelsSet = new Set()
             let originalChannels = JSON.parse(originalData.value).channelInfoList;
             for (let i = 0; i < originalChannels.length; i++) {
                 let channel = originalChannels[i].channel.trim();
@@ -69,8 +70,16 @@
                     if (!channelSet.has(channel)) {
                         result += "- " + channel + "\n"
                     }
+                    originalChannelsSet.add(channel);
                 }
             }
+
+            let channels = Array.from(channelSet);
+            channels.forEach((channel) => {
+                if(!originalChannelsSet.has(channel)) {
+                    result += "+ " + channel + "\n"
+                }
+            }) 
 
             let newJson = {
                 channelInfoList: []
@@ -78,10 +87,10 @@
 
             for (let item of channelSet) {
                 //console.log("push:", item);
-                newJson.channelInfoList.push(`${item}`)
+                newJson.channelInfoList.push(`{ channel: ${item}}`)
             }
 
-            jsonResultField.value =  JSON.stringify(newJson, null, "\t")
+            jsonResultField.value = JSON.stringify(newJson, null, "\t")
             localStorage.originalChannels = originalData.value;
             localStorage.modifiedChannels = modifiedData.value;
             localStorage.newChannels = JSON.stringify(newJson, null, "\t")
